@@ -122,8 +122,8 @@ const SITE={
     {id:"EXPERIMENT 001",title:"Sample experiment",description:"小さな試作の説明。(仮データ)",date:"2026.10.19",url:""}
   ],
   links:[
-    {label:"GitHub",handle:"@your-id (仮)",url:""},
-    {label:"SNS",handle:"@your-id (仮)",url:""}
+    {label:"GitHub",handle:"@vor-ges",url:"https://github.com/vor-ges"},
+    {label:"SNS",handle:"@nur_ieren",url:"https://x.com/nur_ieren"}
   ],
   log:[{date:"2026.10.19",text:"Site created (sample data)"}]
 };
@@ -182,7 +182,7 @@ works:()=>{const tags=[...new Set(SITE.works.flatMap(w=>w.tags||[]))];
  return `<div class="page">${head("Works","制作物と取り組み。")}<div class="filters" id="flt"><button aria-pressed="true" data-t="">All</button>${tags.map(t=>`<button aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join("")}</div><div class="grid" id="wg">${SITE.works.map(workCard).join("")}</div></div>`},
 interests:()=>`<div class="page">${head("Interests","何に興味があるのかの整理。")}${SITE.interests.map(c=>`<section class="blk" style="margin-top:2rem"><h2 class="sec">${esc(c.category)}</h2><div class="rows">${c.items.map(i=>`<div class="row" style="padding:1rem 0;border-bottom:1px solid var(--color-line);font-size:.875rem"><b style="font-weight:500">${link(i.url,esc(i.label))}</b><div class="sub">${esc(i.note)}</div></div>`).join("")}</div></section>`).join("")}</div>`,
 experiments:()=>`<div class="page">${head("Experiments","完成品未満の、小さな試作。")}<div class="grid">${SITE.experiments.map(e=>`<${e.url?"a":"div"} class="card"${e.url?` href="${esc(e.url)}"`:""}><span class="sub status">${esc(e.id)}</span><h3>${esc(e.title)}</h3><p>${esc(e.description)}</p><span class="sub">${esc(e.date)}</span></${e.url?"a":"div"}>`).join("")}</div></div>`,
-links:()=>`<div class="page">${head("Elsewhere","外部アカウント。")}<div class="note">URLは未設定です。SITE.links の url に入力するとリンクになります。</div><div class="rows">${SITE.links.map(l=>l."https://github.com/vor-ges"?`<a class="row" href="${esc(l.url)}" target="_blank" rel="noopener"><span>${esc(l.label)}</span><span>${esc(l.handle)}</span></a>`:`<div class="row" style="display:flex;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--color-line);font-size:.875rem"><span>${esc(l.label)}</span><span class="sub">${esc(l.handle)}</span></div>`).join("")}</div></div>`
+links:()=>`<div class="page">${head("Elsewhere","外部アカウント。")}<div class="note">URLは未設定です。SITE.links の url に入力するとリンクになります。</div><div class="rows">${SITE.links.map(l=>l.url?`<a class="row" href="${esc(l.url)}" target="_blank" rel="noopener"><span>${esc(l.label)}</span><span>${esc(l.handle)}</span></a>`:`<div class="row" style="display:flex;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--color-line);font-size:.875rem"><span>${esc(l.label)}</span><span class="sub">${esc(l.handle)}</span></div>`).join("")}</div></div>`
 };
 /* router */
 function route(){
