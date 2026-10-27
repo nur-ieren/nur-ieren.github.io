@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Personal Archive</title>
+<style>
+:root{
+  --color-paper:#F4F0E8;--color-surface:#EAE4D9;--color-ink:#292823;--color-muted:#6b675e;--color-line:#D6CFC2;--color-accent:#A64F38;
+  --overlay:rgba(41,40,35,.38);
+  --font-mono:"IBM Plex Mono","SFMono-Regular",Consolas,"Noto Sans Mono CJK JP","Hiragino Sans","Yu Gothic",monospace;
+  --text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.25rem;--text-xl:1.75rem;--text-display:clamp(2rem,5vw,4.5rem);
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-6:1.5rem;--space-8:2rem;--space-12:3rem;--space-16:4rem;--space-24:6rem;
+  --content-width:72rem;--reading-width:42rem;--page-gutter:clamp(1.25rem,5vw,4rem);
+  --border-width:1px;--radius-sm:.25rem;--radius-md:.5rem;
+  --ease-out:cubic-bezier(.16,1,.3,1);--duration-fast:160ms;--duration-normal:320ms;--duration-slow:560ms;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--color-paper:#F4F0E8;}}
+*{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--color-paper);color:var(--color-ink);font-family:var(--font-mono);font-size:var(--text-base);line-height:1.9;-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body.lock{overflow:hidden}
+a{color:var(--color-ink);text-decoration:underline;text-decoration-color:var(--color-line);text-underline-offset:.3em;transition:color var(--duration-fast),text-decoration-color var(--duration-fast)}
+a:hover{color:var(--color-accent);text-decoration-color:var(--color-accent)}
+:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--content-width);margin:0 auto;padding:0 var(--page-gutter)}
+.sub{font-size:var(--text-xs);color:var(--color-muted);letter-spacing:.04em;line-height:1.6}
+/* header */
+.dots{position:fixed;top:calc(env(safe-area-inset-top,0px) + .75rem);left:calc(var(--page-gutter) - .5rem);z-index:20;background:none;border:0;font:inherit;font-size:var(--text-lg);color:var(--color-ink);padding:.5rem .75rem;cursor:pointer;letter-spacing:.1em;border-radius:var(--radius-sm)}
+.dots span{display:inline-block;transition:transform var(--duration-normal) var(--ease-out),color var(--duration-fast)}
+.dots:hover span{color:var(--color-accent)}
+.dots:hover span:nth-child(1){transform:translateY(-3px)}.dots:hover span:nth-child(3){transform:translateY(3px)}
+/* menu */
+.overlay{position:fixed;inset:0;background:var(--overlay);opacity:0;visibility:hidden;transition:opacity var(--duration-normal),visibility var(--duration-normal);z-index:30}
+.menu{position:fixed;top:0;bottom:0;left:0;width:min(88vw,22rem);background:var(--color-surface);border-right:var(--border-width) solid var(--color-line);z-index:31;transform:translateX(-100%);visibility:hidden;transition:transform var(--duration-normal) var(--ease-out),visibility var(--duration-normal);padding:calc(env(safe-area-inset-top,0px) + var(--space-6)) var(--space-8) var(--space-8);display:flex;flex-direction:column}
+body.menu-open .overlay{opacity:1;visibility:visible}
+body.menu-open .menu{transform:none;visibility:visible}
+.menu-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-12)}
+.close{background:none;border:var(--border-width) solid var(--color-line);font:inherit;font-size:var(--text-sm);color:var(--color-ink);padding:.35rem .8rem;border-radius:var(--radius-sm);cursor:pointer;transition:border-color var(--duration-fast),color var(--duration-fast)}
+.close:hover{border-color:var(--color-accent);color:var(--color-accent)}
+.menu ul{list-style:none;margin:0;padding:0}
+.menu li{border-bottom:var(--border-width) solid var(--color-line);opacity:0;transform:translateX(-12px);transition:opacity var(--duration-normal),transform var(--duration-normal) var(--ease-out)}
+body.menu-open .menu li{opacity:1;transform:none;transition-delay:calc(120ms + var(--i)*40ms)}
+.menu a{display:flex;justify-content:space-between;padding:var(--space-4) 0;text-decoration:none;font-size:var(--text-sm)}
+.menu a:hover{padding-left:.5rem;transition:padding var(--duration-fast)}
+.menu a[aria-current=page]{color:var(--color-accent)}
+.menu a[aria-current=page]::after{content:"●";font-size:.6rem;align-self:center}
+/* page */
+main{padding-top:6rem;min-height:calc(100vh - 8rem);outline:none}
+.view{animation:rise var(--duration-slow) var(--ease-out) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.home{text-align:center;padding:var(--space-12) 0 var(--space-16)}
+.avatar{width:7rem;height:7rem;border-radius:50%;background:var(--color-surface);border:var(--border-width) solid var(--color-line);margin:0 auto var(--space-8);display:grid;place-items:center;color:var(--color-muted);font-size:var(--text-xl);overflow:hidden;transition:transform var(--duration-slow) var(--ease-out)}
+.avatar:hover{transform:rotate(-6deg) scale(1.04)}
+.avatar img{width:100%;height:100%;object-fit:cover}
+h1.name{font-size:var(--text-display);font-weight:500;line-height:1.1;margin:0;letter-spacing:-.02em}
+.phon{margin:var(--space-3) 0 var(--space-8)}
+.intro{max-width:var(--reading-width);margin:0 auto;color:var(--color-ink)}
+.stagger>*{opacity:0;animation:rise var(--duration-slow) var(--ease-out) forwards;animation-delay:calc(var(--i)*90ms)}
+h2.sec{font-size:var(--text-lg);font-weight:500;margin:0 0 var(--space-6);padding-bottom:var(--space-3);border-bottom:var(--border-width) solid var(--color-line);display:flex;justify-content:space-between;align-items:baseline}
+section.blk{margin-top:var(--space-16)}
+.grid{display:grid;gap:var(--space-4);grid-template-columns:1fr}
+@media(min-width:40rem){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:64rem){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{display:block;background:var(--color-surface);border:var(--border-width) solid var(--color-line);border-radius:var(--radius-md);padding:var(--space-6);text-decoration:none;text-align:left;transition:transform 200ms var(--ease-out),border-color var(--duration-fast);line-height:1.7}
+.card:hover{transform:translateY(-3px);border-color:var(--color-accent);color:var(--color-ink)}
+.card h3{margin:var(--space-2) 0;font-size:var(--text-base);font-weight:500}
+.card p{margin:0 0 var(--space-3);font-size:var(--text-sm);color:var(--color-muted)}
+.thumb{aspect-ratio:16/9;background:var(--color-paper);border:var(--border-width) dashed var(--color-line);border-radius:var(--radius-sm);display:grid;place-items:center;font-size:var(--text-xs);color:var(--color-muted);margin-bottom:var(--space-3);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.tag{display:inline-block;font-size:var(--text-xs);border:var(--border-width) solid var(--color-line);border-radius:99px;padding:0 .6rem;margin:0 .3rem .3rem 0;color:var(--color-muted)}
+.status{color:var(--color-accent)}
+.page h1{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:500;margin:0 0 var(--space-4);line-height:1.3}
+.lead{color:var(--color-muted);max-width:var(--reading-width);margin:0 0 var(--space-12)}
+.prose{max-width:var(--reading-width)}
+.prose p{margin:0 0 var(--space-4);font-size:var(--text-sm)}
+.tl{list-style:none;margin:0;padding:0;border-left:var(--border-width) solid var(--color-line)}
+.tl li{display:grid;grid-template-columns:6rem 1fr;gap:var(--space-4);padding:0 0 var(--space-6) var(--space-4);position:relative;font-size:var(--text-sm)}
+.tl li::before{content:"";position:absolute;left:-4px;top:.75rem;width:7px;height:7px;border-radius:50%;background:var(--color-accent)}
+.rows a.row{display:flex;justify-content:space-between;gap:var(--space-4);padding:var(--space-4) 0;border-bottom:var(--border-width) solid var(--color-line);text-decoration:none;font-size:var(--text-sm);transition:padding var(--duration-fast)}
+.rows a.row:hover{padding-left:.5rem}
+.rows a.row span:last-child{color:var(--color-muted)}
+.rand{font:inherit;font-size:var(--text-sm);background:none;color:var(--color-ink);border:var(--border-width) solid var(--color-ink);border-radius:var(--radius-sm);padding:.5rem 1rem;cursor:pointer;transition:background var(--duration-fast),color var(--duration-fast)}
+.rand:hover{background:var(--color-ink);color:var(--color-paper)}
+#disc{margin-top:var(--space-4);min-height:4rem}
+.filters{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-6)}
+.filters button{font:inherit;font-size:var(--text-xs);background:none;border:var(--border-width) solid var(--color-line);border-radius:99px;padding:.2rem .8rem;color:var(--color-ink);cursor:pointer;transition:all var(--duration-fast)}
+.filters button[aria-pressed=true]{background:var(--color-ink);color:var(--color-paper);border-color:var(--color-ink)}
+.note{border:var(--border-width) dashed var(--color-accent);border-radius:var(--radius-sm);padding:var(--space-3) var(--space-4);font-size:var(--text-xs);color:var(--color-muted);margin-bottom:var(--space-8)}
+footer{margin-top:var(--space-24);border-top:var(--border-width) solid var(--color-line);padding:var(--space-6) 0 var(--space-12)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-3)}
+.cursor{position:fixed;width:.5rem;height:.5rem;border-radius:50%;background:var(--color-accent);opacity:0;pointer-events:none;z-index:50;transition:opacity var(--duration-normal)}
+@media(hover:none),(pointer:coarse){.cursor{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important;transition-delay:0ms!important}.cursor{display:none}}
+</style>
+</head>
+<body>
+<script>
+/* ====== SITE DATA: edit here. Everything marked 仮 is placeholder. ====== */
+const SITE={
+  name:"Your Name",            /* 仮 */
+  phonetic:"/jɔːr neɪm/",      /* 仮 */
+  initial:"Y",                 /* 仮: avatar letter. Set avatarImage to use a photo */
+  avatarImage:"",
+  tagline:"A little space for my interests and creations.", /* 仮 */
+  updated:"2026.10.19",
+  about:{
+    body:["ここに自己紹介を書きます。(仮)","段落ごとに配列へ追加してください。"],
+    now:["現在取り組んでいること(仮)"],
+    timeline:[{date:"2026",text:"このサイトを作り始める (仮)"}]
+  },
+  works:[
+    {id:"sample-project",title:"Sample Project",description:"制作物の説明を記載します。(仮データ)",date:"2026",tags:["Web","JavaScript"],image:"",url:"",status:"prototype",featured:true},
+    {id:"sample-tool",title:"Sample Tool",description:"小さなツールの説明。(仮データ)",date:"2026",tags:["Tool"],image:"",url:"",status:"idea",featured:true}
+  ],
+  interests:[
+    {category:"Making",items:[{label:"興味の例 (仮)",note:"メモを書きます。",url:""}]},
+    {category:"Reading",items:[{label:"興味の例 (仮)",note:"メモを書きます。",url:""}]}
+  ],
+  experiments:[
+    {id:"EXPERIMENT 001",title:"Sample experiment",description:"小さな試作の説明。(仮データ)",date:"2026.10.19",url:""}
+  ],
+  links:[
+    {label:"GitHub",handle:"@your-id (仮)",url:""},
+    {label:"SNS",handle:"@your-id (仮)",url:""}
+  ],
+  log:[{date:"2026.10.19",text:"Site created (sample data)"}]
+};
+const PAGES=[["home","Home"],["about","About"],["works","Works"],["interests","Interests"],["experiments","Experiments"],["links","Links"]];
+</script>
+
+<button class="dots" id="open" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span>·</span><span>·</span><span>·</span></button>
+<div class="overlay" id="overlay"></div>
+<nav class="menu" id="menu" aria-label="Main" aria-hidden="true">
+  <div class="menu-top"><span class="sub">MENU</span><button class="close" id="close">Close</button></div>
+  <ul id="menulist"></ul>
+</nav>
+<main id="main" tabindex="-1"><div class="wrap" id="view"></div></main>
+<footer><div class="wrap"><span class="sub" id="copy"></span><span class="sub" id="upd"></span></div></footer>
+<div class="cursor" id="cursor"></div>
+
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const body=document.body,openBtn=$("#open"),menu=$("#menu");
+/* menu */
+$("#menulist").innerHTML=PAGES.map(([k,l],i)=>`<li style="--i:${i}"><a href="#/${k}" data-k="${k}">${l}</a></li>`).join("");
+function setMenu(o){
+  body.classList.toggle("menu-open",o);body.classList.toggle("lock",o);
+  openBtn.setAttribute("aria-expanded",o);menu.setAttribute("aria-hidden",!o);
+  menu.inert=!o;
+  if(o)setTimeout(()=>menu.querySelector("a").focus(),60);else openBtn.focus({preventScroll:true});
+}
+menu.inert=true;
+openBtn.onclick=()=>setMenu(true);$("#close").onclick=()=>setMenu(false);$("#overlay").onclick=()=>setMenu(false);
+document.addEventListener("keydown",e=>{
+  if(!body.classList.contains("menu-open"))return;
+  if(e.key==="Escape")setMenu(false);
+  if(e.key==="Tab"){const f=[...menu.querySelectorAll("button,a")],a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+    else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}
+});
+/* templates */
+const workCard=w=>{const T=w.url?"a":"div",h=w.url?` href="${esc(w.url)}" target="_blank" rel="noopener"`:"";
+ return `<${T} class="card"${h}><div class="thumb">${w.image?`<img src="${esc(w.image)}" alt="" loading="lazy">`:"NO IMAGE"}</div><span class="sub">${esc(w.date)} / <span class="status">${esc(w.status)}</span></span><h3>${esc(w.title)}</h3><p>${esc(w.description)}</p>${(w.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</${T}>`};
+const head=(t,l)=>`<h1>${t}</h1><p class="lead">${l}</p>`;
+const link=(u,t)=>u?`<a href="${esc(u)}" target="_blank" rel="noopener">${t}</a>`:t;
+const R={
+home:()=>{const S=SITE,f=S.works.filter(w=>w.featured);
+ return `<div class="home stagger"><div class="avatar" style="--i:0">${S.avatarImage?`<img src="${esc(S.avatarImage)}" alt="">`:esc(S.initial)}</div>
+ <h1 class="name" style="--i:1">${esc(S.name)}</h1><div class="phon sub" style="--i:2">${esc(S.phonetic)}</div><p class="intro" style="--i:3">${esc(S.tagline)}</p></div>
+ <section class="blk"><h2 class="sec">Selected Works<a class="sub" href="#/works">all works</a></h2><div class="grid">${f.map(workCard).join("")}</div></section>
+ <section class="blk"><h2 class="sec">Discovery</h2><div class="grid">
+ <a class="card" href="#/about"><h3>About</h3><p>プロフィールと年表</p></a>
+ <a class="card" href="#/interests"><h3>Interests</h3><p>気になっていること</p></a>
+ <div class="card"><h3>Random</h3><p>サイト内から1つ紹介します。</p><button class="rand" id="rand">Show one</button><div id="disc" aria-live="polite"></div></div></div></section>
+ <section class="blk"><h2 class="sec">Log</h2><div class="rows">${S.log.map(l=>`<div class="row" style="display:flex;gap:1rem;font-size:.875rem"><span class="sub">${esc(l.date)}</span><span>${esc(l.text)}</span></div>`).join("")}</div></section>`},
+about:()=>{const a=SITE.about;return `<div class="page">${head("About","自己紹介と、これまでのこと。")}<div class="note">仮データです。js先頭の SITE.about を編集してください。</div><div class="prose">${a.body.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
+ <section class="blk"><h2 class="sec">Currently</h2><div class="prose">${a.now.map(p=>`<p>${esc(p)}</p>`).join("")}</div></section>
+ <section class="blk"><h2 class="sec">Archive</h2><ul class="tl">${a.timeline.map(t=>`<li><span class="sub">${esc(t.date)}</span><span>${esc(t.text)}</span></li>`).join("")}</ul></section></div>`},
+works:()=>{const tags=[...new Set(SITE.works.flatMap(w=>w.tags||[]))];
+ return `<div class="page">${head("Works","制作物と取り組み。")}<div class="filters" id="flt"><button aria-pressed="true" data-t="">All</button>${tags.map(t=>`<button aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join("")}</div><div class="grid" id="wg">${SITE.works.map(workCard).join("")}</div></div>`},
+interests:()=>`<div class="page">${head("Interests","何に興味があるのかの整理。")}${SITE.interests.map(c=>`<section class="blk" style="margin-top:2rem"><h2 class="sec">${esc(c.category)}</h2><div class="rows">${c.items.map(i=>`<div class="row" style="padding:1rem 0;border-bottom:1px solid var(--color-line);font-size:.875rem"><b style="font-weight:500">${link(i.url,esc(i.label))}</b><div class="sub">${esc(i.note)}</div></div>`).join("")}</div></section>`).join("")}</div>`,
+experiments:()=>`<div class="page">${head("Experiments","完成品未満の、小さな試作。")}<div class="grid">${SITE.experiments.map(e=>`<${e.url?"a":"div"} class="card"${e.url?` href="${esc(e.url)}"`:""}><span class="sub status">${esc(e.id)}</span><h3>${esc(e.title)}</h3><p>${esc(e.description)}</p><span class="sub">${esc(e.date)}</span></${e.url?"a":"div"}>`).join("")}</div></div>`,
+links:()=>`<div class="page">${head("Elsewhere","外部アカウント。")}<div class="note">URLは未設定です。SITE.links の url に入力するとリンクになります。</div><div class="rows">${SITE.links.map(l=>l.url?`<a class="row" href="${esc(l.url)}" target="_blank" rel="noopener"><span>${esc(l.label)}</span><span>${esc(l.handle)}</span></a>`:`<div class="row" style="display:flex;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--color-line);font-size:.875rem"><span>${esc(l.label)}</span><span class="sub">${esc(l.handle)}</span></div>`).join("")}</div></div>`
+};
+/* router */
+function route(){
+ const k=(location.hash.replace(/^#\/?/,"")||"home");const key=R[k]?k:"home";
+ const v=$("#view");v.innerHTML=`<div class="view">${R[key]()}</div>`;
+ document.title=(key==="home"?"":PAGES.find(p=>p[0]===key)[1]+" | ")+SITE.name;
+ document.querySelectorAll(".menu a").forEach(a=>a.toggleAttribute("aria-current",a.dataset.k===key)||a.removeAttribute("aria-current"));
+ document.querySelectorAll(".menu a").forEach(a=>{if(a.dataset.k===key)a.setAttribute("aria-current","page")});
+ scrollTo(0,0);if(body.classList.contains("menu-open")){body.classList.remove("menu-open","lock");openBtn.setAttribute("aria-expanded",false);menu.inert=true}
+ $("#main").focus({preventScroll:true});
+ const r=$("#rand");if(r)r.onclick=()=>{
+  const pool=[...SITE.works.map(w=>["Works",w.title,w.description,"#/works"]),...SITE.interests.flatMap(c=>c.items.map(i=>["Interests",i.label,i.note,"#/interests"])),...SITE.experiments.map(e=>["Experiments",e.title,e.description,"#/experiments"])];
+  const p=pool[Math.floor(Math.random()*pool.length)];
+  $("#disc").innerHTML=`<span class="sub">${esc(p[0])}</span><div>${esc(p[1])}</div><a class="sub" href="${p[3]}">open</a>`};
+ const fl=$("#flt");if(fl)fl.onclick=e=>{const b=e.target.closest("button");if(!b)return;
+  fl.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  const t=b.dataset.t;$("#wg").innerHTML=SITE.works.filter(w=>!t||(w.tags||[]).includes(t)).map(workCard).join("")};
+}
+addEventListener("hashchange",route);
+$("#copy").textContent="© "+new Date().getFullYear()+" "+SITE.name;
+$("#upd").textContent="Last updated "+SITE.updated;
+route();
+/* cursor dot (desktop only, native cursor kept) */
+if(matchMedia("(hover:hover) and (pointer:fine)").matches&&!matchMedia("(prefers-reduced-motion:reduce)").matches){
+ const c=$("#cursor");let x=0,y=0,tx=0,ty=0,on=false;
+ addEventListener("mousemove",e=>{tx=e.clientX;ty=e.clientY;if(!on){on=true;c.style.opacity=.6;x=tx;y=ty;loop()}});
+ document.addEventListener("mouseleave",()=>c.style.opacity=0);
+ function loop(){x+=(tx-x)*.15;y+=(ty-y)*.15;c.style.transform=`translate(${x+10}px,${y+10}px)`;requestAnimationFrame(loop)}
+}
+</script>
+</body>
+</html>
