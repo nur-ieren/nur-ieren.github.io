@@ -75,6 +75,7 @@ section.blk{margin-top:var(--space-16)}
 .lead{color:var(--color-muted);max-width:var(--reading-width);margin:0 0 var(--space-12)}
 .prose{max-width:var(--reading-width)}
 .prose p{margin:0 0 var(--space-4);font-size:var(--text-sm)}
+.rows .sub{white-space:pre-line}
 .tl{list-style:none;margin:0;padding:0;border-left:var(--border-width) solid var(--color-line)}
 .tl li{display:grid;grid-template-columns:6rem 1fr;gap:var(--space-4);padding:0 0 var(--space-6) var(--space-4);position:relative;font-size:var(--text-sm)}
 .tl li::before{content:"";position:absolute;left:-4px;top:.75rem;width:7px;height:7px;border-radius:50%;background:var(--color-accent)}
@@ -119,8 +120,22 @@ const SITE={
 	{id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一するツールです。",date:"2026",tags:["tool","unity","controller","writedefaults"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"1.0.0",featured:true}
   ],
   interests:[
-    {category:"Making",items:[{label:"興味の例 (仮)",note:"メモを書きます。",url:""}]},
-    {category:"Reading",items:[{label:"興味の例 (仮)",note:"メモを書きます。",url:""}]}
+    {category:"Favorites",items:[
+		{label:"VRChat",note:"基本自分のフレオンかグルオンが生息地\nVRC名鑑に（当社比）まともな自己紹介あるよ\nFFならぜひフレンドになりたい心持ち〜〜",url:""},
+		{label:"音ゲー / Rhythm games",note:"物理ボタンが好き！\n特にBeatmania iidx！",url:""},
+		{label:"カードゲーム / Card games",note:"人生でカードゲームに触れたことがなかった人が\n今年中にポケポケ → シャドバ → 遊戯王といった順番でハマっております\n一概にカードゲームって言っても幅広いね！",url:""},
+		{label:"FPS / First Person Shooting games",note:"フレンドさんとやるならなんでも大歓迎！",url:""},
+		{label:"折り紙 / Origami",note:"実はね？７歳くらいからずっとやってるね\n立体のお花折るの大好きです！佐藤式がお気に入り！\nTadashi MoriさんとMasahiro Ichikawaさんは我が懐かしき道標...\n弟も折り紙好きで、ポケモンたくさん折ってるっぽい！",url:""},
+		{label:"外国語 / Foreign languages",note:"English >> Deutsch >>>> 한국어 >>>>>> Latina\nいろんな言語を幅広く、特にゲルマン語派を中心に楽しんでる〜\n英語とドイツ語は不自由なく話せる程度にまで持っていきたい！",url:""},
+		{label:"言語学 / Linguistics",note:"音韻論、形態論、類型論、方言学、語源学辺りは大好き！\nたまに人工言語界隈にも足を運んだり...？\n言語・語学好きな方とはかなりシナジーがあるかも！",url:""},
+		{label:"自作キーボード / Custom keyboard",note:"キー配列とキーマッピングをずっと触ってるかも\nGoForty Orthoでmato式インスパイアの配列を練り練り中\nみんなもロウスタッガードQWERTY配列から脱しよう！",url:""}
+	]},
+    {category:"Bucket List",items:[
+		{label:"音楽理論 / Music Theory",note:"いつか自分で音楽作ってみたい〜\nついでに普段聞いてる音楽について詳しく分析できるようになれちゃったりして？",url:""},
+		{label:"イラスト / Illustration",note:"ペンタブ自体は持ってる！\nただ幼い頃から絶望的なのでモチベがあったら克服したい雰囲気？",url:""},
+		{label:"ダンス / Dance",note:"今のところ機材はPico4とPico Motion Tracker\n部屋の環境は出来から、ダンス関連イベントにも顔出しやすくなるかも？\nでも、両手強く握ったら接続失うんですよ（？）\n新しいHMD & フルトラに変えれればモチベ上がっちゃうかも",url:""},
+		{label:"モデリング / Modelling",note:"いつかちょっとした小物作れるくらいにはなりたい...Blenderから逃げｒ",url:""}
+	]}
   ],
   links:[
     {label:"GitHub",handle:"@nur-ieren",url:"https://github.com/nur-ieren"},
