@@ -104,8 +104,8 @@ const SITE={
   phonetic:"[ˌnuːɐ̯ˈiːʁən]",
   initial:"n",
   avatarImage:"nur.jpg",
-  tagline:"A little space for my interests and creations.", /* 仮 */
-  updated:"2026.11.02",
+  tagline:"A little space for my interests and creations.",
+  updated:"2026.11.05",
   about:{
     body:["バーチャルな超絶ゆったりまったり一般人","目元の名前アクセと髪にかかった北斗七星がトレードマーク？"],
     now:["discordに生息しながら空いた時間でVRChatをしている"],
@@ -201,7 +201,7 @@ home:()=>{const S=SITE,f=S.works.filter(w=>w.featured);
  <a class="card" href="#/interests"><h3>Interests</h3><p>気になっていること</p></a>
  <div class="card"><h3>Random</h3><p>サイト内から1つ紹介します。</p><button class="rand" id="rand">Show one</button><div id="disc" aria-live="polite"></div></div></div></section>
  <section class="blk"><h2 class="sec">Log</h2><div class="rows">${S.log.map(l=>`<div class="row" style="display:flex;gap:1rem;font-size:.875rem"><span class="sub">${esc(l.date)}</span><span>${esc(l.text)}</span></div>`).join("")}</div></section>`},
-about:()=>{const a=SITE.about;return `<div class="page">${head("About","自己紹介と、これまでのこと。")}<div class="note">仮データです。js先頭の SITE.about を編集してください。</div><div class="prose">${a.body.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
+about:()=>{const a=SITE.about;return `<div class="page">${head("About","自己紹介と、これまでのこと。")}<div class="prose">${a.body.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
  <section class="blk"><h2 class="sec">Currently</h2><div class="prose">${a.now.map(p=>`<p>${esc(p)}</p>`).join("")}</div></section>
  <section class="blk"><h2 class="sec">Archive</h2><ul class="tl">${a.timeline.map(t=>`<li><span class="sub">${esc(t.date)}</span><span>${esc(t.text)}</span></li>`).join("")}</ul></section></div>`},
 works:()=>{const tags=[...new Set(SITE.works.flatMap(w=>w.tags||[]))];
