@@ -94,6 +94,40 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(-
 .cursor{position:fixed;width:.5rem;height:.5rem;border-radius:50%;background:var(--color-accent);opacity:0;pointer-events:none;z-index:50;transition:opacity var(--duration-normal)}
 @media(hover:none),(pointer:coarse){.cursor{display:none}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important;transition-delay:0ms!important}.cursor{display:none}}
+/* music embeds */
+.music{display:grid;gap:var(--space-4);grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr))}
+.sp{display:block;width:100%;border:0;border-radius:12px;background:var(--color-surface)}
+.sp-empty{min-height:12rem;display:grid;place-items:center;align-content:center;gap:var(--space-2);text-align:center;padding:var(--space-6);border:var(--border-width) dashed var(--color-line);border-radius:12px;background:var(--color-surface)}
+.sp-empty b{font-weight:500;font-size:var(--text-sm)}
+/* interests: row + image slider */
+.irow{display:flex;gap:var(--space-6);align-items:flex-start;padding:var(--space-4) 0;border-bottom:var(--border-width) solid var(--color-line);font-size:var(--text-sm)}
+.itxt{flex:1 1 auto;min-width:0}
+.pics{flex:0 0 auto;display:flex;gap:var(--space-2);max-width:calc(3.5*4.5rem + 3*var(--space-2) + 4px);padding:4px 2px .5rem;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--color-line) transparent}
+.pic{flex:0 0 4.5rem;width:4.5rem;height:4.5rem;display:block;border-radius:.875rem;overflow:hidden;border:var(--border-width) solid var(--color-line);background:var(--color-surface);scroll-snap-align:start;text-decoration:none;transition:transform 200ms var(--ease-out),border-color var(--duration-fast)}
+button.pic{padding:0;font:inherit;cursor:zoom-in}
+.pic:hover{transform:translateY(-2px);border-color:var(--color-accent)}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:var(--space-12) var(--space-4);background:rgba(41,40,35,.88)}
+.lb[hidden]{display:none}
+.lb figure{margin:0;display:grid;justify-items:center;gap:var(--space-3);max-width:min(92vw,60rem)}
+.lb figcaption{color:var(--color-paper);font-size:var(--text-sm);line-height:1.7;text-align:center;white-space:pre-line}
+.lb figcaption:empty{display:none}
+.lb img{max-width:100%;max-height:76vh;object-fit:contain;border-radius:.875rem;background:var(--color-surface);animation:rise var(--duration-normal) var(--ease-out) both}
+.lb button{position:absolute;font:inherit;font-size:var(--text-lg);line-height:1;color:var(--color-paper);background:rgba(244,240,232,.12);border:var(--border-width) solid rgba(244,240,232,.35);border-radius:99px;width:2.75rem;height:2.75rem;cursor:pointer;transition:background var(--duration-fast)}
+.lb button:hover{background:rgba(244,240,232,.28)}
+#lbclose{top:calc(env(safe-area-inset-top,0px) + 1rem);right:1rem}
+#lbprev{left:1rem;top:50%;transform:translateY(-50%)}
+#lbnext{right:1rem;top:50%;transform:translateY(-50%)}
+.lb.single #lbprev,.lb.single #lbnext{display:none}
+.pic img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:40rem){.irow{flex-direction:column;gap:var(--space-3)}.pics{max-width:100%;width:100%}}
+/* links: service logo */
+.lk{display:flex;align-items:center;gap:var(--space-3);min-width:0}
+.ico{flex:0 0 auto;width:1.75rem;height:1.75rem;display:grid;place-items:center;border-radius:.45rem;overflow:hidden;border:var(--border-width) solid var(--color-line);background:var(--color-surface);font-style:normal;font-size:var(--text-xs);line-height:1;color:var(--color-muted)}
+.ico.ph{border-style:dashed}
+.ico img{display:block;width:100%;height:100%;object-fit:cover}
+.rows a.row{align-items:center}
+[data-k]{scroll-margin-top:3.5rem}
 </style>
 </head>
 <body>
@@ -112,23 +146,30 @@ const SITE={
     timeline:[{date:"2026.10.19",text:"このサイトを作り始める"}]
   },
   works:[
-    {id:"bot",title:"vrc-friend-bot",description:"フレンドのログイン時間を知るのに便利です。",date:"2026",tags:["discord","bot","vrchat","friend"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot",status:"1.0.0",featured:true},
-    {id:"tool",title:"ArmatureSyncControl",description:"アーマチュア内のTransform値を揃えるツールです。",date:"2026",tags:["tool","unity","armature"],image:"",url:"https://github.com/nur-ieren/ArmatureSyncControl",status:"1.0.0",featured:false},
-	{id:"tool",title:"MatsPrefsUnifier",description:"マテリアルの影設定などを揃えるツールです。",date:"2026",tags:["tool","unity","material"],image:"",url:"https://github.com/vor-ges/MatsPrefsUnifier",status:"1.0.0",featured:true},
-	{id:"tool",title:"Openlilavatarutils",description:"lilavatarutilsを簡単に開けるツールです。",date:"2026",tags:["tool","unity","lilavatarutils"],image:"",url:"https://github.com/nur-ieren/Openlilavatarutils",status:"1.0.0",featured:false},
-	{id:"tool",title:"ProjectFolderHider",description:"Projectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","project","folder"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"1.0.0",featured:false},
-	{id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一するツールです。",date:"2026",tags:["tool","unity","controller","writedefaults"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"1.0.0",featured:true}
+    {id:"bot",title:"vrc-friend-bot",description:"フレンドのログイン時間を知るのに便利です。",date:"2026",tags:["discord","bot","vrchat","friend"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot",status:"release",featured:true},
+    {id:"tool",title:"ArmatureSyncControl",description:"アーマチュア内のTransform値を揃えるツールです。",date:"2026",tags:["tool","unity","armature"],image:"",url:"https://github.com/nur-ieren/ArmatureSyncControl",status:"release",featured:false},
+	  {id:"tool",title:"MatsPrefsUnifier",description:"マテリアルの影設定などを揃えるツールです。",date:"2026",tags:["tool","unity","material"],image:"",url:"https://github.com/vor-ges/MatsPrefsUnifier",status:"release",featured:true},
+	  {id:"tool",title:"Openlilavatarutils",description:"lilavatarutilsを簡単に開けるツールです。",date:"2026",tags:["tool","unity","lilavatarutils"],image:"",url:"https://github.com/nur-ieren/Openlilavatarutils",status:"release",featured:false},
+	  {id:"tool",title:"ProjectFolderHider",description:"Projectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","project","folder"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
+	  {id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一するツールです。",date:"2026",tags:["tool","unity","controller","writedefaults"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:true}
   ],
+  /* My favorite musics: SpotifyのURL(プレイリスト/アルバム/曲)を貼るだけ。height省略時は352(トラック一覧つき)。曲単体なら152。 */
+  music:[
+    {title:"Komponenten meines Lebens",url:"https://open.spotify.com/playlist/2ToA6F9DR8IdPF8d75xOsE",height:352},
+    {title:"30 MUSIC CHALLENGE",url:"https://open.spotify.com/playlist/2pGmYMEaIxjdGYMHTkHBLg",height:352},
+    {title:"Your Top Songs 2025",url:"https://open.spotify.com/playlist/37i9dQZEVXdiHjNqiDiAwE",height:352},
+  ],
+  /* interestsの各項目の images:[{src:"サムネ画像",full:"拡大用画像(省略可)",alt:"画像の内容を説明する文",caption:"拡大時に下へ出す文(省略可。省略するとaltを表示)"}] に正方形画像を並べる。クリックで拡大表示。はみ出した分は横スライド。 */
   interests:[
     {category:"Favorites",items:[
-		{label:"VRChat",note:"基本自分のフレオンかグルオンが生息地\nVRC名鑑に（当社比）まともな自己紹介あるよ\nFFならぜひフレンドになりたい心持ち〜〜",url:""},
-		{label:"音ゲー / Rhythm games",note:"物理ボタンが好き！\n特にBeatmania iidx！",url:""},
-		{label:"カードゲーム / Card games",note:"人生でカードゲームに触れたことがなかった人が\n今年中にポケポケ → シャドバ → 遊戯王といった順番でハマっております\n一概にカードゲームって言っても幅広いね！",url:""},
-		{label:"FPS / First Person Shooting games",note:"フレンドさんとやるならなんでも大歓迎！",url:""},
-		{label:"折り紙 / Origami",note:"実はね？７歳くらいからずっとやってるね\n立体のお花折るの大好きです！佐藤式がお気に入り！\nTadashi MoriさんとMasahiro Ichikawaさんは我が懐かしき道標...\n弟も折り紙好きで、ポケモンたくさん折ってるっぽい！",url:""},
-		{label:"外国語 / Foreign languages",note:"English >> Deutsch >>>> 한국어 >>>>>> Latina\nいろんな言語を幅広く、特にゲルマン語派を中心に楽しんでる〜\n英語とドイツ語は不自由なく話せる程度にまで持っていきたい！",url:""},
+		{label:"VRChat",note:"基本自分のフレオンかグルオンが生息地\nVRC名鑑に（当社比）まともな自己紹介あるよ\nFFならぜひフレンドになりたい心持ち〜〜\n陰ながら\（勝手ながら\）フレンドの絵文字制作係を担っています",url:"",images:[{src:"./Interest./vrchat-hmd-trackers.jpg",full:"",caption:"Quest2だった頃と、先に買っておいたPico Motion Tracker。"},{src:"./Interest./vrchat-hmd-trackers-2.jpg",full:"",caption:"Pico 4が届いたときの写真。"},{src:"./Interest./vrchat-sign-origin.png",full:"",caption:"この名前を作ったときに考えた書置き用のサイン。ぬぁぬぅぬる全てに対応している。"}]},
+		{label:"音ゲー / Rhythm games",note:"物理ボタンが好き！\n特にBeatmania iidx！",url:"",images:[{src:"./Interest./iidx-controller.jpg",full:"",caption:"現在使用しているPhoenix wan。三和+D2MV-01-1C3を使用している。"}]},
+		{label:"カードゲーム / Card games",note:"人生でカードゲームに触れたことがなかった人が\n今年中にポケポケ → シャドバ → 遊戯王といった順番でハマっております\n一概にカードゲームって言っても幅広いね！",url:"",images:[{src:"./Interest./Pokmon TCGP.png",full:"",caption:""},{src:"./Interest./ShadowverseWB.png",full:"",caption:"始めて半年の戦績。そこまで熱中してるわけではないけど、めちゃ楽しい。"}]},
+		{label:"FPS / First Person Shooting games",note:"フレンドさんとやるならなんでも大歓迎！",url:"",images:[{src:"./Interest./Ttianfall2-statictics.png",full:"",caption:"R-97が最強ってワケ。"}]},
+		{label:"折り紙 / Origami",note:"実はね？７歳くらいからずっとやってるね\n立体のお花折るの大好きです！佐藤式がお気に入り！\nTadashi MoriさんとMasahiro Ichikawaさんは我が懐かしき道標...\n弟も折り紙好きで、ポケモンたくさん折ってるっぽい！",url:"",images:[{src:"./Interest./miraiyashoten-rose.JPG",full:"",caption:"未来屋書店のカバーを用いて作ったバラ。"},{src:"./Interest./miraiyashoten-rose-2.JPG",full:"",caption:""},{src:"./Interest./origami-im-deutschland.jpg",full:"",caption:"ドイツ留学中に折って友達に上げた折り紙。4種類折るのは初めてだったので新鮮だった。"}]},
+		{label:"外国語 / Foreign languages",note:"English >> Deutsch >>>> 한국어 >>>>>> Latina\nいろんな言語を幅広く、特にゲルマン語派を中心に楽しんでる〜\n英語とドイツ語は不自由なく話せる程度にまで持っていきたい！",url:"",images:[{src:"./Interest./SDK-Abitur.jpg",full:"",caption:"語学留学修了時に頂いたNiveau B1(Allgemeinsprache)の証明書。"}]},
 		{label:"言語学 / Linguistics",note:"音韻論、形態論、類型論、方言学、語源学辺りは大好き！\nたまに人工言語界隈にも足を運んだり...？\n言語・語学好きな方とはかなりシナジーがあるかも！",url:""},
-		{label:"自作キーボード / Custom keyboard",note:"キー配列とキーマッピングをずっと触ってるかも\nGoForty Orthoでmato式インスパイアの配列を練り練り中\nみんなもロウスタッガードQWERTY配列から脱しよう！",url:""}
+		{label:"自作キーボード / Custom keyboard",note:"キー配列とキーマッピングをずっと触ってるかも\nGoForty Orthoでmato式インスパイアの配列を練り練り中\nみんなもロウスタッガードQWERTY配列から脱しよう！",url:"",images:[{src:"./Interest./Go-Forty.jpg",full:"",caption:"26年の正月に買ったGoForty Orthoの写真。"},{src:"./Interest./Go-Forty-Bind0.png",full:"",caption:"mato式インスパイアのオリジナル論理配列。"},{src:"./Interest./Go-Forty-Bind1.png",full:"",caption:""},{src:"./Interest./Go-Forty-Bind2.png",full:"",caption:""},{src:"./Interest./Go-Forty-Bind3.png",full:"",caption:""}]}
 	]},
     {category:"Bucket List",items:[
 		{label:"音楽理論 / Music Theory",note:"いつか自分で音楽作ってみたい〜\nついでに普段聞いてる音楽について詳しく分析できるようになれちゃったりして？",url:""},
@@ -138,17 +179,17 @@ const SITE={
 	]}
   ],
   links:[
-    {label:"GitHub",handle:"@nur-ieren",url:"https://github.com/nur-ieren"},
-    {label:"VRChat",handle:"@nur-",url:"https://vrchat.com/home/user/usr_cd7c4239-44e5-41ab-a28e-11a9a11357b0"},
-	{label:"vrc-meikan",handle:"@nur_ieren",url:"https://vrc-meikan.com/profile/baa76819-ca5d-4151-84d0-ed0fb4140380"},
-    {label:"X(Twitter)",handle:"@nur_ieren",url:"https://x.com/nur_ieren"},
-    {label:"My Skeb requests",handle:"@nur_ieren",url:"https://skeb.jp/@nur_ieren"},
-	{label:"YouTube",handle:"@nur_ieren",url:"https://youtube.com/@nur_ieren"},
-	{label:"Spotify",handle:"@yy_yy",url:"https://open.spotify.com/user/31iul5uh5th7mbxnqrsp3tu4fjbe"},
-	{label:"SoundCloud",handle:"@nur_ieren",url:"https://soundcloud.com/nur_ieren"}
+    {label:"GitHub",handle:"@nur-ieren",url:"https://github.com/nur-ieren",logo:"github-logo.png"},
+    {label:"VRChat",handle:"@nur-",url:"https://vrchat.com/home/user/usr_cd7c4239-44e5-41ab-a28e-11a9a11357b0",logo:"VRChat Logo Black.png"},
+	  {label:"vrc-meikan",handle:"@nur_ieren",url:"https://vrc-meikan.com/profile/baa76819-ca5d-4151-84d0-ed0fb4140380",logo:"vrc-meikan.png"},
+    {label:"X(Twitter)",handle:"@nur_ieren",url:"https://x.com/nur_ieren",logo:"X-logo.jpg"},
+    {label:"My Skeb requests",handle:"@nur_ieren",url:"https://skeb.jp/@nur_ieren",logo:"skeb-logo.jpg"},
+	  {label:"YouTube",handle:"@nur_ieren",url:"https://youtube.com/@nur_ieren",logo:"Youtube-logo.png"},
+	  {label:"Spotify",handle:"@yy_yy",url:"https://open.spotify.com/user/31iul5uh5th7mbxnqrsp3tu4fjbe",logo:"spotify-logo.png"},
+	  {label:"SoundCloud",handle:"@nur_ieren",url:"https://soundcloud.com/nur_ieren",logo:"soundcloud-logo.jpg"}
   ],
   log:[
-    {date:"2026.11.08",text:"Link added"},
+    {date:"2026.11.08",text:"Link added, Photo feature added in Interests page, My favorite musics section added in Home page, Ramdom feature's feature upgraded"},
     {date:"2026.11.02",text:"Experiments page deleted, Interests page updated"},
     {date:"2026.10.31",text:"Works added"},
     {date:"2026.10.29",text:"Icon changed"},
@@ -167,6 +208,10 @@ const PAGES=[["home","Home"],["about","About"],["works","Works"],["interests","I
 <main id="main" tabindex="-1"><div class="wrap" id="view"></div></main>
 <footer><div class="wrap"><span class="sub" id="copy"></span><span class="sub" id="upd"></span></div></footer>
 <div class="cursor" id="cursor"></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="画像の拡大表示" hidden>
+  <button id="lbclose" aria-label="閉じる">×</button><button id="lbprev" aria-label="前の画像">‹</button><button id="lbnext" aria-label="次の画像">›</button>
+  <figure><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure>
+</div>
 
 <script>
 const $=s=>document.querySelector(s),esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -190,9 +235,13 @@ document.addEventListener("keydown",e=>{
 });
 /* templates */
 const workCard=w=>{const T=w.url?"a":"div",h=w.url?` href="${esc(w.url)}" target="_blank" rel="noopener"`:"";
- return `<${T} class="card"${h}><div class="thumb">${w.image?`<img src="${esc(w.image)}" alt="" loading="lazy">`:"NO IMAGE"}</div><span class="sub">${esc(w.date)} / <span class="status">${esc(w.status)}</span></span><h3>${esc(w.title)}</h3><p>${esc(w.description)}</p>${(w.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</${T}>`};
+ return `<${T} class="card"${h} data-k="w:${esc(w.title)}"><div class="thumb">${w.image?`<img src="${esc(w.image)}" alt="" loading="lazy">`:"NO IMAGE"}</div><span class="sub">${esc(w.date)} / <span class="status">${esc(w.status)}</span></span><h3>${esc(w.title)}</h3><p>${esc(w.description)}</p>${(w.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</${T}>`};
 const head=(t,l)=>`<h1>${t}</h1><p class="lead">${l}</p>`;
 const link=(u,t)=>u?`<a href="${esc(u)}" target="_blank" rel="noopener">${t}</a>`:t;
+const spEmbed=u=>{try{const x=new URL(u);if(x.hostname!=="open.spotify.com")return"";let p=x.pathname.replace(/^\/intl-[a-zA-Z-]+/,"");if(!p.startsWith("/embed/"))p="/embed"+p;return"https://open.spotify.com"+p+"?utm_source=generator"}catch(e){return""}};
+const music=()=>`<section class="blk"><h2 class="sec">My favorite musics</h2><div class="music">${(SITE.music||[]).map(m=>{const e=spEmbed(m.url);return e?`<iframe class="sp" src="${esc(e)}" height="${+m.height||352}" title="${esc(m.title||"Spotify")}" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`:`<div class="sp-empty"><b>${esc(m.title||"Spotify")}</b><span class="sub">Spotify URL 未設定</span></div>`}).join("")}</div></section>`;
+const pics=a=>{a=(a||[]).filter(x=>x&&x.src);return a.length?`<div class="pics">${a.map(x=>`<button type="button" class="pic" data-src="${esc(x.full||x.src)}" data-cap="${esc(x.caption??x.alt)}" aria-label="${esc(x.alt||"画像")}を拡大"><img src="${esc(x.src)}" alt="${esc(x.alt)}" loading="lazy"></button>`).join("")}</div>`:""};
+const logo=l=>l.logo?`<i class="ico"><img src="${esc(l.logo)}" alt="" loading="lazy"></i>`:`<i class="ico ph" aria-hidden="true">${esc([...String(l.label||"?")][0].toUpperCase())}</i>`;
 const R={
 home:()=>{const S=SITE,f=S.works.filter(w=>w.featured);
  return `<div class="home stagger"><div class="avatar" style="--i:0">${S.avatarImage?`<img src="${esc(S.avatarImage)}" alt="">`:esc(S.initial)}</div>
@@ -202,28 +251,47 @@ home:()=>{const S=SITE,f=S.works.filter(w=>w.featured);
  <a class="card" href="#/about"><h3>About</h3><p>プロフィールと年表</p></a>
  <a class="card" href="#/interests"><h3>Interests</h3><p>気になっていること</p></a>
  <div class="card"><h3>Random</h3><p>サイト内から1つ紹介します。</p><button class="rand" id="rand">Show one</button><div id="disc" aria-live="polite"></div></div></div></section>
+ ${music()}
  <section class="blk"><h2 class="sec">Log</h2><div class="rows">${S.log.map(l=>`<div class="row" style="display:flex;gap:1rem;font-size:.875rem"><span class="sub">${esc(l.date)}</span><span>${esc(l.text)}</span></div>`).join("")}</div></section>`},
 about:()=>{const a=SITE.about;return `<div class="page">${head("About","自己紹介と、これまでのこと。")}<div class="prose">${a.body.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
  <section class="blk"><h2 class="sec">Currently</h2><div class="prose">${a.now.map(p=>`<p>${esc(p)}</p>`).join("")}</div></section>
  <section class="blk"><h2 class="sec">Archive</h2><ul class="tl">${a.timeline.map(t=>`<li><span class="sub">${esc(t.date)}</span><span>${esc(t.text)}</span></li>`).join("")}</ul></section></div>`},
 works:()=>{const tags=[...new Set(SITE.works.flatMap(w=>w.tags||[]))];
  return `<div class="page">${head("Works","制作物と取り組み。")}<div class="filters" id="flt"><button aria-pressed="true" data-t="">All</button>${tags.map(t=>`<button aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join("")}</div><div class="grid" id="wg">${SITE.works.map(workCard).join("")}</div></div>`},
-interests:()=>`<div class="page">${head("Interests","何に興味があるのかの整理。")}${SITE.interests.map(c=>`<section class="blk" style="margin-top:2rem"><h2 class="sec">${esc(c.category)}</h2><div class="rows">${c.items.map(i=>`<div class="row" style="padding:1rem 0;border-bottom:1px solid var(--color-line);font-size:.875rem"><b style="font-weight:500">${link(i.url,esc(i.label))}</b><div class="sub">${esc(i.note)}</div></div>`).join("")}</div></section>`).join("")}</div>`,
-links:()=>`<div class="page">${head("Elsewhere","外部アカウント。")}<div class="rows">${SITE.links.map(l=>l.url?`<a class="row" href="${esc(l.url)}" target="_blank" rel="noopener"><span>${esc(l.label)}</span><span>${esc(l.handle)}</span></a>`:`<div class="row" style="display:flex;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--color-line);font-size:.875rem"><span>${esc(l.label)}</span><span class="sub">${esc(l.handle)}</span></div>`).join("")}</div></div>`
+interests:()=>`<div class="page">${head("Interests","何に興味があるのかの整理。")}${SITE.interests.map(c=>`<section class="blk" style="margin-top:2rem"><h2 class="sec">${esc(c.category)}</h2><div class="rows">${c.items.map(i=>`<div class="irow" data-k="i:${esc(i.label)}"><div class="itxt"><b style="font-weight:500">${link(i.url,esc(i.label))}</b><div class="sub">${esc(i.note)}</div></div>${pics(i.images)}</div>`).join("")}</div></section>`).join("")}</div>`,
+links:()=>`<div class="page">${head("Elsewhere","外部アカウント。")}<div class="rows">${SITE.links.map(l=>l.url?`<a class="row" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="lk">${logo(l)}${esc(l.label)}</span><span>${esc(l.handle)}</span></a>`:`<div class="row" style="display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:1px solid var(--color-line);font-size:.875rem"><span class="lk">${logo(l)}${esc(l.label)}</span><span class="sub">${esc(l.handle)}</span></div>`).join("")}</div></div>`
 };
+/* lightbox */
+const lb=$("#lb"),lbImg=$("#lbimg");let lbList=[],lbIdx=0,lbFrom=null;
+function lbShow(i){lbIdx=(i+lbList.length)%lbList.length;const b=lbList[lbIdx];lbImg.src=b.dataset.src;$("#lbcap").textContent=b.dataset.cap||"";lb.classList.toggle("single",lbList.length<2)}
+function lbOpen(b){lbList=[...b.closest(".pics").querySelectorAll(".pic")];lbFrom=b;lb.hidden=false;body.classList.add("lock");lbShow(lbList.indexOf(b));$("#lbclose").focus()}
+function lbClose(){lb.hidden=true;lbImg.removeAttribute("src");body.classList.remove("lock");if(lbFrom)lbFrom.focus({preventScroll:true})}
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".pic");if(b&&b.dataset.src){lbOpen(b);return}
+  if(lb.hidden)return;
+  if(e.target.closest("#lbprev"))lbShow(lbIdx-1);
+  else if(e.target.closest("#lbnext"))lbShow(lbIdx+1);
+  else if(e.target===lb||e.target.closest("#lbclose"))lbClose()});
+document.addEventListener("keydown",e=>{if(lb.hidden)return;
+  if(e.key==="Escape")lbClose();if(e.key==="ArrowLeft")lbShow(lbIdx-1);if(e.key==="ArrowRight")lbShow(lbIdx+1)});
 /* router */
+let goal=null; /* Randomで選ばれた項目。遷移後にその項目を画面最上部へ出す */
 function route(){
  const k=(location.hash.replace(/^#\/?/,"")||"home");const key=R[k]?k:"home";
- const v=$("#view");v.innerHTML=`<div class="view">${R[key]()}</div>`;
+ const v=$("#view");v.style.paddingBottom="";v.innerHTML=`<div class="view">${R[key]()}</div>`;
  document.title=(key==="home"?"":PAGES.find(p=>p[0]===key)[1]+" | ")+SITE.name;
  document.querySelectorAll(".menu a").forEach(a=>a.toggleAttribute("aria-current",a.dataset.k===key)||a.removeAttribute("aria-current"));
  document.querySelectorAll(".menu a").forEach(a=>{if(a.dataset.k===key)a.setAttribute("aria-current","page")});
  scrollTo(0,0);if(body.classList.contains("menu-open")){body.classList.remove("menu-open","lock");openBtn.setAttribute("aria-expanded",false);menu.inert=true}
  $("#main").focus({preventScroll:true});
+ if(goal){const g=goal;goal=null;const el=[...v.querySelectorAll("[data-k]")].find(e=>e.dataset.k===g);
+  if(el){const top=Math.max(0,el.getBoundingClientRect().top+scrollY-(parseFloat(getComputedStyle(el).scrollMarginTop)||0));
+   const extra=top+innerHeight-document.documentElement.scrollHeight;if(extra>0)v.style.paddingBottom=extra+"px";scrollTo(0,top)}}
  const r=$("#rand");if(r)r.onclick=()=>{
-  const pool=[...SITE.works.map(w=>["Works",w.title,w.description,"#/works"]),...SITE.interests.flatMap(c=>c.items.map(i=>["Interests",i.label,i.note,"#/interests"]))];
+  const pool=[...SITE.works.map(w=>["Works",w.title,w.description,"#/works","w:"+w.title]),...SITE.interests.flatMap(c=>c.items.map(i=>["Interests",i.label,i.note,"#/interests","i:"+i.label]))];
   const p=pool[Math.floor(Math.random()*pool.length)];
-  $("#disc").innerHTML=`<span class="sub">${esc(p[0])}</span><div>${esc(p[1])}</div><a class="sub" href="${p[3]}">open</a>`};
+  $("#disc").innerHTML=`<span class="sub">${esc(p[0])}</span><div>${esc(p[1])}</div><a class="sub" href="${p[3]}" data-go="${esc(p[4])}">open</a>`;
+  $("#disc").querySelector("[data-go]").onclick=e=>{goal=e.currentTarget.dataset.go}};
  const fl=$("#flt");if(fl)fl.onclick=e=>{const b=e.target.closest("button");if(!b)return;
   fl.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));
   const t=b.dataset.t;$("#wg").innerHTML=SITE.works.filter(w=>!t||(w.tags||[]).includes(t)).map(workCard).join("")};
