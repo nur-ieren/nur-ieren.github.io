@@ -113,8 +113,8 @@ button.pic{padding:0;font:inherit;cursor:zoom-in}
 .lb figcaption{color:var(--color-paper);font-size:var(--text-sm);line-height:1.7;text-align:center;white-space:pre-line}
 .lb figcaption:empty{display:none}
 .lb img{max-width:100%;max-height:76vh;object-fit:contain;border-radius:.875rem;background:var(--color-surface);animation:rise var(--duration-normal) var(--ease-out) both}
-.lb button{position:absolute;font:inherit;font-size:var(--text-lg);line-height:1;color:var(--color-paper);background:rgba(244,240,232,.12);border:var(--border-width) solid rgba(244,240,232,.35);border-radius:99px;width:2.75rem;height:2.75rem;cursor:pointer;transition:background var(--duration-fast)}
-.lb button:hover{background:rgba(244,240,232,.28)}
+.lb button{position:absolute;z-index:2;font:inherit;font-size:var(--text-lg);line-height:1;color:var(--color-paper);background:rgba(41,40,35,.55);border:var(--border-width) solid rgba(244,240,232,.5);backdrop-filter:blur(4px);border-radius:99px;width:2.75rem;height:2.75rem;cursor:pointer;transition:background var(--duration-fast)}
+.lb button:hover{background:rgba(41,40,35,.8)}
 #lbclose{top:calc(env(safe-area-inset-top,0px) + 1rem);right:1rem}
 #lbprev{left:1rem;top:50%;transform:translateY(-50%)}
 #lbnext{right:1rem;top:50%;transform:translateY(-50%)}
@@ -189,7 +189,7 @@ const SITE={
 	  {label:"SoundCloud",handle:"@nur_ieren",url:"https://soundcloud.com/nur_ieren",logo:"soundcloud-logo.jpg"}
   ],
   log:[
-    {date:"2026.11.08",text:"Link added, Photo feature added in Interests page, My favorite musics section added in Home page, Ramdom feature's feature upgraded"},
+    {date:"2026.11.08",text:"Link added, Photo feature added in Interests page, My favorite musics section added in Home page, Ramdom feature upgraded"},
     {date:"2026.11.02",text:"Experiments page deleted, Interests page updated"},
     {date:"2026.10.31",text:"Works added"},
     {date:"2026.10.29",text:"Icon changed"},
