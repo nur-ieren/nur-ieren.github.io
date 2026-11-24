@@ -116,6 +116,16 @@ button.pic{padding:0;font:inherit;cursor:zoom-in}
 .ico img{display:block;width:100%;height:100%;object-fit:cover}
 .rows a.row{align-items:center}
 [data-k]{scroll-margin-top:3.5rem}
+/* section background images */
+section.blk.hasbg{position:relative;isolation:isolate}
+.secbg{position:absolute;inset:-1rem;z-index:-1;border-radius:var(--radius-md);background-position:center;background-size:cover;background-repeat:no-repeat;pointer-events:none}
+.bgurl{position:absolute;right:-.5rem;bottom:-.9rem;z-index:1;max-width:min(24rem,100%);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 .4rem;font-size:.625rem;line-height:1.6;letter-spacing:.02em;color:var(--color-muted);text-decoration:none;background:rgba(244,240,232,.75);border-radius:var(--radius-sm)}
+.bgurl:hover{color:var(--color-accent)}
+/* page background */
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background-size:cover;background-position:center;background-repeat:no-repeat;transition:opacity var(--duration-normal)}
+.bgcredit{position:fixed;right:.75rem;bottom:calc(env(safe-area-inset-bottom,0px) + .5rem);z-index:5;max-width:calc(100vw - 1.5rem);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.6875rem;line-height:1.5;color:var(--color-muted);text-decoration:none;padding:.15rem .4rem;border-radius:var(--radius-sm);background:rgba(244,240,232,.7)}
+.bgcredit:hover{color:var(--color-accent)}
+.bgcredit[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -144,6 +154,29 @@ const SITE={
 	{id:"tool",title:"ProjectFolderHider",description:"不要なProjectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
 	{id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
   ],
+  /* セクション背景画像。キーはセクション見出し。src=画像パス / opacity=透明度(0〜1、省略時はbgOpacity) / url=出典URL(右下に表示・クリックで開く) */
+  bgOpacity:0.15,
+  bg:{
+    "Selected Works":   {src:"", opacity:null, url:""},
+    "Discovery":        {src:"", opacity:null, url:""},
+    "My Favorite Musics":{src:"", opacity:null, url:""},
+    "Currently":        {src:"", opacity:null, url:""},
+    "Archive":          {src:"", opacity:null, url:""},
+    "Favorites":        {src:"", opacity:null, url:""},
+    "Bucket List":      {src:"", opacity:null, url:""}
+  },
+  /* ページ背景。ページごとに pc(PC用画像) と mobile(スマホ用画像) を別々に指定できます。
+     opacity: 0〜1 (0.1で薄め、0.3で濃いめ)。ページ内で省略すると下の共通値を使います。
+     url: 画像の出典URL。設定すると画面の右下隅に小さく表示されます。
+     画像パスが空("")のものは表示しません。mobileが空ならスマホでは背景なしです(PC用画像は流用しません)。 */
+  bg:{
+    opacity:0.15,
+    home:     {pc:"", mobile:"", opacity:0.15, url:""},
+    about:    {pc:"", mobile:"", opacity:0.15, url:""},
+    interests:{pc:"", mobile:"", opacity:0.15, url:""},
+    works:    {pc:"", mobile:"", opacity:0.15, url:""},
+    links:    {pc:"", mobile:"", opacity:0.15, url:""}
+  },
   /* My Favorite Musics: SpotifyのURL(プレイリスト/アルバム/曲)を貼るだけ。height省略時は352(トラック一覧つき)。曲単体なら152。 */
   music:[
     {title:"Komponenten meines Lebens",url:"https://open.spotify.com/playlist/2ToA6F9DR8IdPF8d75xOsE",height:352},
@@ -184,6 +217,8 @@ const SITE={
 const PAGES=[["links","Links"],["works","Works"],["home","Home"],["about","About"],["interests","Interests"]];
 </script>
 
+<div class="bg" id="bg" aria-hidden="true"></div>
+<a class="bgcredit" id="bgcredit" target="_blank" rel="noopener" hidden></a>
 <nav class="pagerbar" aria-label="Page navigation">
   <div class="pg"><a class="pager sm" id="pprev2" href="#/"></a><a class="pager" id="pprev" href="#/"></a></div>
   <div class="pg"><a class="pager" id="pnext" href="#/"></a><a class="pager sm" id="pnext2" href="#/"></a></div>
@@ -239,15 +274,36 @@ document.addEventListener("click",e=>{
   else if(e.target===lb||e.target.closest("#lbclose"))lbClose()});
 document.addEventListener("keydown",e=>{if(lb.hidden)return;
   if(e.key==="Escape")lbClose();if(e.key==="ArrowLeft")lbShow(lbIdx-1);if(e.key==="ArrowRight")lbShow(lbIdx+1)});
+/* section backgrounds */
+function applyBg(root){
+  root.querySelectorAll("section.blk").forEach(sec=>{
+    const h=sec.querySelector("h2.sec"),t=h&&h.firstChild?h.firstChild.textContent.trim():"";
+    const c=(SITE.bg||{})[t];if(!c||!c.src)return;
+    const o=Math.min(1,Math.max(0,+(c.opacity??SITE.bgOpacity??.15)));
+    sec.classList.add("hasbg");
+    const d=document.createElement("div");d.className="secbg";d.setAttribute("aria-hidden","true");
+    d.style.backgroundImage=`url("${String(c.src).replace(/"/g,"%22")}")`;d.style.opacity=o;sec.prepend(d);
+    if(c.url){const a=document.createElement("a");a.className="bgurl";a.href=c.url;a.target="_blank";a.rel="noopener";
+      a.textContent=String(c.url).replace(/^https?:\/\//,"");a.title=c.url;sec.append(a)}
+  });
+}
+/* background: ページ別・PC/スマホ別 */
+const bgEl=$("#bg"),bgCr=$("#bgcredit"),bgMq=matchMedia("(max-width:40rem)");let bgKey="home";
+function setBg(k){bgKey=k;const B=SITE.bg||{},c=B[k]||{},img=bgMq.matches?c.mobile:c.pc;
+  bgEl.style.backgroundImage=img?`url(${JSON.stringify(img)})`:"none";bgEl.style.opacity=c.opacity??B.opacity??.15;
+  if(img&&c.url){bgCr.href=c.url;bgCr.textContent=c.url.replace(/^https?:\/\//,"");bgCr.hidden=false}else bgCr.hidden=true}
+bgMq.addEventListener("change",()=>setBg(bgKey));
 /* router */
 let goal=null; /* Randomで選ばれた項目。遷移後にその項目を画面最上部へ出す */
 function route(){
  const k=(location.hash.replace(/^#\/?/,"")||"home");const key=R[k]?k:"home";
  const v=$("#view");v.style.paddingBottom="";v.innerHTML=`<div class="view">${R[key]()}</div>`;
  document.title=(key==="home"?"":PAGES.find(p=>p[0]===key)[1]+" | ")+SITE.name;
+ applyBg(v);
  const ci=PAGES.findIndex(p=>p[0]===key),at=d=>PAGES[(ci+d+PAGES.length*2)%PAGES.length];
  const setP=(id,pg,left,label)=>{const e=$(id);e.href="#/"+pg[0];e.innerHTML=left?`<i aria-hidden="true">←</i><span>${pg[1]}</span>`:`<span>${pg[1]}</span><i aria-hidden="true">→</i>`;e.setAttribute("aria-label",label+": "+pg[1])};
  setP("#pprev",at(-1),true,"前のページ");setP("#pprev2",at(-2),true,"2つ前のページ");setP("#pnext",at(1),false,"次のページ");setP("#pnext2",at(2),false,"2つ先のページ");
+ setBg(key);
  scrollTo(0,0);
  $("#main").focus({preventScroll:true});
  if(goal){const g=goal;goal=null;const el=[...v.querySelectorAll("[data-k]")].find(e=>e.dataset.k===g);
