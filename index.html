@@ -51,7 +51,7 @@ section.blk{margin-top:var(--space-16)}
 .grid{display:grid;gap:var(--space-4);grid-template-columns:1fr}
 @media(min-width:40rem){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:64rem){.grid{grid-template-columns:repeat(3,1fr)}}
-.card{display:block;background:var(--color-surface);border:var(--border-width) solid var(--color-line);border-radius:var(--radius-md);padding:var(--space-6);text-decoration:none;text-align:left;transition:transform 200ms var(--ease-out),border-color var(--duration-fast);line-height:1.7}
+.card{display:block;background:rgba(234,228,217,var(--card-alpha,1));border:var(--border-width) solid var(--color-line);border-radius:var(--radius-md);padding:var(--space-6);text-decoration:none;text-align:left;transition:transform 200ms var(--ease-out),border-color var(--duration-fast);line-height:1.7}
 .card:hover{transform:translateY(-3px);border-color:var(--color-accent);color:var(--color-ink)}
 .card h3{margin:var(--space-2) 0;font-size:var(--text-base);font-weight:500}
 .card p{margin:0 0 var(--space-3);font-size:var(--text-sm);color:var(--color-muted)}
@@ -154,9 +154,12 @@ const SITE={
 	  {id:"tool",title:"ProjectFolderHider",description:"不要なProjectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
 	  {id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
   ],
-  /* セクション背景画像。キーはセクション見出し。src=画像パス / opacity=透明度(0〜1、省略時はbgOpacity) / url=出典URL(右下に表示・クリックで開く) */
-  bgOpacity:0.25,
-  bg:{
+  /* カード(ツール名・About・Interests・Randomなどを載せている箱)の不透明度。1=不透明、0=完全に透明。一括で変わります */
+  cardOpacity:0.5,
+  /* セクション背景画像。キーはセクション見出し。src=画像パス / opacity=透明度(0〜1、省略時はsectionBgOpacity) / url=出典URL(右下に表示・クリックで開く)
+     ※ページ全体の背景(下の bg)とは別物なので、名前を sectionBg にしています */
+  sectionBgOpacity:0.25,
+  sectionBg:{
     "Selected Works":   {src:"", opacity:null, url:""},
     "Discovery":        {src:"", opacity:null, url:""},
     "My Favorite Musics":{src:"", opacity:null, url:""},
@@ -281,12 +284,19 @@ document.addEventListener("click",e=>{
   else if(e.target===lb||e.target.closest("#lbclose"))lbClose()});
 document.addEventListener("keydown",e=>{if(lb.hidden)return;
   if(e.key==="Escape")lbClose();if(e.key==="ArrowLeft")lbShow(lbIdx-1);if(e.key==="ArrowRight")lbShow(lbIdx+1)});
+document.documentElement.style.setProperty("--card-alpha",Math.min(1,Math.max(0,+(SITE.cardOpacity??1))));
+/* ←/→キーで前後のページへ(拡大表示中・入力欄・修飾キー併用時は無効) */
+document.addEventListener("keydown",e=>{
+  if(!lb.hidden||e.defaultPrevented||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)return;
+  if(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")return;
+  const t=e.target;if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
+  location.hash=$(e.key==="ArrowLeft"?"#pprev":"#pnext").getAttribute("href")});
 /* section backgrounds */
 function applyBg(root){
   root.querySelectorAll("section.blk").forEach(sec=>{
     const h=sec.querySelector("h2.sec"),t=h&&h.firstChild?h.firstChild.textContent.trim():"";
-    const c=(SITE.bg||{})[t];if(!c||!c.src)return;
-    const o=Math.min(1,Math.max(0,+(c.opacity??SITE.bgOpacity??.15)));
+    const c=(SITE.sectionBg||{})[t];if(!c||!c.src)return;
+    const o=Math.min(1,Math.max(0,+(c.opacity??SITE.sectionBgOpacity??.15)));
     sec.classList.add("hasbg");
     const d=document.createElement("div");d.className="secbg";d.setAttribute("aria-hidden","true");
     d.style.backgroundImage=`url("${String(c.src).replace(/"/g,"%22")}")`;d.style.opacity=o;sec.prepend(d);
