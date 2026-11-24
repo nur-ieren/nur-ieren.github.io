@@ -136,7 +136,7 @@ const SITE={
   phonetic:"[ˌnuːɐ̯ˈiːʁən]",
   initial:"n",
   avatarImage:"./Home/nur.jpg",
-  tagline:"A little space for my interests and creations.",
+  tagline:"自己紹介やツールを置いてるよ",
   updated:"2026.11.24",
   about:{
     body:["バーチャルな超絶ゆったりまったり一般人","目元の名前アクセと髪にかかった北斗七星がトレードマーク？"],
@@ -145,17 +145,17 @@ const SITE={
   },
   works:[
     {id:"bot",title:"vrc-friend-bot",description:"フレンドのログイン時間を知るのに便利です。",date:"2026",tags:["discord","bot","vrchat","python"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot",status:"release",featured:true},
-    {id:"bot",title:"vrc-friend-bot-rs",description:"vrc-friend-botのRust版です。",date:"2026",tags:["discord","bot","vrchat","rust"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot-rs",status:"in progress",featured:false},
+    {id:"bot",title:"vrc-friend-bot-rs",description:"vrc-friend-botのRust版です。",date:"2026",tags:["discord","bot","vrchat","rust"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot-rs",status:"work in progress",featured:false},
     {id:"tool",title:"ArmatureSyncControl",description:"アーマチュア内のTransform値を揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ArmatureSyncControl",status:"release",featured:false},
-	{id:"tool",title:"ExpressionMenuRelinker",description:"新しいアバターごとのメニューを作るのに便利です。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ExpresionMenuRelinker",status:"release",featured:false},
-	{id:"tool",title:"MatsPrefsUnifier",description:"マテリアルの影設定などを揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/vor-ges/MatsPrefsUnifier",status:"release",featured:true},
-	{id:"tool",title:"MenuToggler",description:"不要なUnityメニューを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/MenuToggler",status:"release",featured:true},
-	{id:"tool",title:"Openlilavatarutils",description:"lilavatarutilsをアバタールート右クリックから簡単に開きます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/Openlilavatarutils",status:"release",featured:false},
-	{id:"tool",title:"ProjectFolderHider",description:"不要なProjectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
-	{id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
+	  {id:"tool",title:"ExpressionMenuRelinker",description:"新しいアバターごとのメニューを作るのに便利です。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ExpresionMenuRelinker",status:"release",featured:false},
+	  {id:"tool",title:"MatsPrefsUnifier",description:"マテリアルの影設定などを揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/vor-ges/MatsPrefsUnifier",status:"release",featured:true},
+	  {id:"tool",title:"MenuToggler",description:"不要なUnityメニューを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/MenuToggler",status:"release",featured:true},
+	  {id:"tool",title:"Openlilavatarutils",description:"lilavatarutilsをアバタールート右クリックから簡単に開きます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/Openlilavatarutils",status:"release",featured:false},
+	  {id:"tool",title:"ProjectFolderHider",description:"不要なProjectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
+	  {id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
   ],
   /* セクション背景画像。キーはセクション見出し。src=画像パス / opacity=透明度(0〜1、省略時はbgOpacity) / url=出典URL(右下に表示・クリックで開く) */
-  bgOpacity:0.15,
+  bgOpacity:0.25,
   bg:{
     "Selected Works":   {src:"", opacity:null, url:""},
     "Discovery":        {src:"", opacity:null, url:""},
@@ -168,14 +168,21 @@ const SITE={
   /* ページ背景。ページごとに pc(PC用画像) と mobile(スマホ用画像) を別々に指定できます。
      opacity: 0〜1 (0.1で薄め、0.3で濃いめ)。ページ内で省略すると下の共通値を使います。
      url: 画像の出典URL。設定すると画面の右下隅に小さく表示されます。
-     画像パスが空("")のものは表示しません。mobileが空ならスマホでは背景なしです(PC用画像は流用しません)。 */
+     画像パスが空("")のものは表示しません。mobileが空ならスマホでは背景なしです(PC用画像は流用しません)。
+     slide: true にすると、画像を画面の横幅ぴったりに合わせ、スクロールに合わせてスライドさせます。
+            ページ最上部で画像の一番上、ページ最下部で画像の一番下が揃います。
+            ・画像の縦が「ページの縦」より長い → 画像のほうが速く動く(ページのスクロールが相対的に遅い)
+            ・画像の縦が「ページの縦」より短い → 画像のほうが遅く動く(ページのスクロールが相対的に速い)
+            ・画像の縦が画面より短い場合は、画面内を上から下へ移動し、余白にはページの地色が見えます。
+            false なら画像を画面全体に敷き詰めて(cover)中央で固定します。 */
   bg:{
-    opacity:0.15,
-    home:     {pc:"", mobile:"", opacity:0.15, url:""},
-    about:    {pc:"", mobile:"", opacity:0.15, url:""},
-    interests:{pc:"", mobile:"", opacity:0.15, url:""},
-    works:    {pc:"", mobile:"", opacity:0.15, url:""},
-    links:    {pc:"", mobile:"", opacity:0.15, url:""}
+    slide:{pc:true, mobile:true},
+    opacity:0.25,
+    home:     {pc:"./Background/Home.jpg", mobile:"./Background/Home.jpg", opacity:0.25, url:"https://skeb.jp/@muro_sya/works/183"},
+    about:    {pc:"./Background/About.jpg", mobile:"./Background/About.jpg", opacity:0.25, url:"https://skeb.jp/@nkmf_1122/works/38"},
+    interests:{pc:"./Background/Interests.jpg", mobile:"./Background/Interests.jpg", opacity:0.25, url:"https://skeb.jp/@AraiRacu/works/7"},
+    works:    {pc:"./Background/Works.jpg", mobile:"./Background/Works.jpg", opacity:0.25, url:"https://skeb.jp/@pu_nkn/works/62"},
+    links:    {pc:"./Background/Links.jpg", mobile:"./Background/Links.jpg", opacity:0.25, url:"https://skeb.jp/@7qDappi_zizii/works/121"}
   },
   /* My Favorite Musics: SpotifyのURL(プレイリスト/アルバム/曲)を貼るだけ。height省略時は352(トラック一覧つき)。曲単体なら152。 */
   music:[
@@ -289,10 +296,17 @@ function applyBg(root){
 }
 /* background: ページ別・PC/スマホ別 */
 const bgEl=$("#bg"),bgCr=$("#bgcredit"),bgMq=matchMedia("(max-width:40rem)");let bgKey="home";
-function setBg(k){bgKey=k;const B=SITE.bg||{},c=B[k]||{},img=bgMq.matches?c.mobile:c.pc;
-  bgEl.style.backgroundImage=img?`url(${JSON.stringify(img)})`:"none";bgEl.style.opacity=c.opacity??B.opacity??.15;
+let bgSlide=false;
+function bgPos(){const max=document.documentElement.scrollHeight-innerHeight,p=bgSlide&&max>0?Math.min(1,Math.max(0,scrollY/max)):0;
+  bgEl.style.backgroundSize=bgSlide?"100% auto":"cover";
+  bgEl.style.backgroundPosition=bgSlide?`50% ${p*100}%`:"50% 50%"}
+function setBg(k){bgKey=k;const B=SITE.bg||{},c=B[k]||{},sl=B.slide||{},m=bgMq.matches,img=m?c.mobile:c.pc;
+  bgSlide=m?!!sl.mobile:sl.pc!==false;
+  bgEl.style.backgroundImage=img?`url(${JSON.stringify(img)})`:"none";bgEl.style.opacity=c.opacity??B.opacity??.15;bgPos();
   if(img&&c.url){bgCr.href=c.url;bgCr.textContent=c.url.replace(/^https?:\/\//,"");bgCr.hidden=false}else bgCr.hidden=true}
 bgMq.addEventListener("change",()=>setBg(bgKey));
+let bgTick=0;const bgReq=()=>{if(!bgTick)bgTick=requestAnimationFrame(()=>{bgTick=0;bgPos()})};
+addEventListener("scroll",bgReq,{passive:true});addEventListener("resize",bgReq);new ResizeObserver(bgReq).observe(document.body);
 /* router */
 let goal=null; /* Randomで選ばれた項目。遷移後にその項目を画面最上部へ出す */
 function route(){
