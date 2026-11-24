@@ -55,8 +55,6 @@ section.blk{margin-top:var(--space-16)}
 .card:hover{transform:translateY(-3px);border-color:var(--color-accent);color:var(--color-ink)}
 .card h3{margin:var(--space-2) 0;font-size:var(--text-base);font-weight:500}
 .card p{margin:0 0 var(--space-3);font-size:var(--text-sm);color:var(--color-muted)}
-.thumb{aspect-ratio:16/9;background:var(--color-paper);border:var(--border-width) dashed var(--color-line);border-radius:var(--radius-sm);display:grid;place-items:center;font-size:var(--text-xs);color:var(--color-muted);margin-bottom:var(--space-3);overflow:hidden}
-.thumb img{width:100%;height:100%;object-fit:cover}
 .tag{display:inline-block;font-size:var(--text-xs);border:var(--border-width) solid var(--color-line);border-radius:99px;padding:0 .6rem;margin:0 .3rem .3rem 0;color:var(--color-muted)}
 .status{color:var(--color-accent)}
 .page h1{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:500;margin:0 0 var(--space-12);line-height:1.3}
@@ -137,7 +135,7 @@ const SITE={
   initial:"n",
   avatarImage:"./Home/nur.jpg",
   tagline:"自己紹介やツールを置いてるよ",
-  updated:"2026.11.24",
+  updated:"2026.11.25",
   about:{
     body:["バーチャルな超絶ゆったりまったり一般人","目元の名前アクセと髪にかかった北斗七星がトレードマーク？"],
     now:["discordに生息しながら空いた時間でVRChatをしている"],
@@ -181,11 +179,11 @@ const SITE={
   bg:{
     slide:{pc:true, mobile:true},
     opacity:0.25,
-    home:     {pc:"./Background/Home.jpg", mobile:"./Background/Home.jpg", opacity:0.25, url:"https://skeb.jp/@muro_sya/works/183"},
-    about:    {pc:"./Background/About.jpg", mobile:"./Background/About.jpg", opacity:0.25, url:"https://skeb.jp/@nkmf_1122/works/38"},
-    interests:{pc:"./Background/Interests.jpg", mobile:"./Background/Interests.jpg", opacity:0.25, url:"https://skeb.jp/@AraiRacu/works/7"},
-    works:    {pc:"./Background/Works.jpg", mobile:"./Background/Works.jpg", opacity:0.25, url:"https://skeb.jp/@pu_nkn/works/62"},
-    links:    {pc:"./Background/Links.jpg", mobile:"./Background/Links.jpg", opacity:0.25, url:"https://skeb.jp/@7qDappi_zizii/works/121"}
+    home:     {pc:"./Background/PC_Home.webp", mobile:"./Background/SP_Home.webp", opacity:0.25, url:"https://skeb.jp/@muro_sya/works/183"},
+    about:    {pc:"./Background/PC_About.webp", mobile:"./Background/SP_About.webp", opacity:0.25, url:"https://skeb.jp/@nkmf_1122/works/38"},
+    interests:{pc:"./Background/PC_Interests.webp", mobile:"./Background/SP_Interests.webp", opacity:0.25, url:"https://skeb.jp/@AraiRacu/works/7"},
+    works:    {pc:"./Background/PC_Works.webp", mobile:"./Background/SP_Works.webp", opacity:0.25, url:"https://skeb.jp/@pu_nkn/works/62"},
+    links:    {pc:"./Background/PC_Links.webp", mobile:"./Background/SP_Links.webp", opacity:0.25, url:"https://skeb.jp/@7qDappi_zizii/works/121"}
   },
   /* My Favorite Musics: SpotifyのURL(プレイリスト/アルバム/曲)を貼るだけ。height省略時は352(トラック一覧つき)。曲単体なら152。 */
   music:[
@@ -246,7 +244,7 @@ const $=s=>document.querySelector(s),esc=t=>String(t??"").replace(/[&<>"]/g,c=>(
 const body=document.body;
 /* templates */
 const workCard=w=>{const T=w.url?"a":"div",h=w.url?` href="${esc(w.url)}" target="_blank" rel="noopener"`:"";
- return `<${T} class="card"${h} data-k="w:${esc(w.title)}"><div class="thumb">${w.image?`<img src="${esc(w.image)}" alt="" loading="lazy">`:"NO IMAGE"}</div><span class="sub">${esc(w.date)} / <span class="status">${esc(w.status)}</span></span><h3>${esc(w.title)}</h3><p>${esc(w.description)}</p>${(w.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</${T}>`};
+ return `<${T} class="card"${h} data-k="w:${esc(w.title)}"><span class="sub">${esc(w.date)} / <span class="status">${esc(w.status)}</span></span><h3>${esc(w.title)}</h3><p>${esc(w.description)}</p>${(w.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</${T}>`};
 const head=t=>`<h1>${t}</h1>`;
 const link=(u,t)=>u?`<a href="${esc(u)}" target="_blank" rel="noopener">${t}</a>`:t;
 const spEmbed=u=>{try{const x=new URL(u);if(x.hostname!=="open.spotify.com")return"";let p=x.pathname.replace(/^\/intl-[a-zA-Z-]+/,"");if(!p.startsWith("/embed/"))p="/embed"+p;return"https://open.spotify.com"+p+"?utm_source=generator"}catch(e){return""}};
