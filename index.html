@@ -143,7 +143,7 @@ section.blk.hasbg{position:relative;isolation:isolate}
 </head>
 <body>
 <script>
-/* ====== SITE DATA: edit here. ====== */
+/* ====== SITE DATA ====== */
 const SITE={
   name:"nur_ieren",
   phonetic:"[ˌnuːɐ̯ˈiːʁən]",
@@ -167,10 +167,9 @@ const SITE={
 	  {id:"tool",title:"ProjectFolderHider",description:"不要なProjectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
 	  {id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
   ],
-  /* カード(ツール名・About・Interests・Randomなどを載せている箱)の不透明度。1=不透明、0=完全に透明。一括で変わります */
+  /* カードの不透明度。1=不透明、0=完全に透明。一括で変わる。 */
   cardOpacity:0.5,
-  /* セクション背景画像。キーはセクション見出し。src=画像パス / opacity=透明度(0〜1、省略時はsectionBgOpacity) / url=出典URL(右下に表示・クリックで開く)
-     ※ページ全体の背景(下の bg)とは別物なので、名前を sectionBg にしています */
+  /* セクション背景画像。キーはセクション見出し。src=画像パス / opacity=透明度(0〜1、省略時はsectionBgOpacity) / url=出典URL(右下に表示・クリックで開く) */
   sectionBgOpacity:0.25,
   sectionBg:{
     "Selected Works":   {src:"", opacity:null, url:""},
@@ -181,16 +180,15 @@ const SITE={
     "Favorites":        {src:"", opacity:null, url:""},
     "Bucket List":      {src:"", opacity:null, url:""}
   },
-  /* ページ背景。ページごとに pc(PC用画像) と mobile(スマホ用画像) を別々に指定できます。
-     opacity: 0〜1 (0.1で薄め、0.3で濃いめ)。ページ内で省略すると下の共通値を使います。
-     url: 画像の出典URL。設定すると画面の右下隅に小さく表示されます。
-     画像パスが空("")のものは表示しません。mobileが空ならスマホでは背景なしです(PC用画像は流用しません)。
-     slide: true にすると、画像を画面の横幅ぴったりに合わせ、スクロールに合わせてスライドさせます。
-            ページ最上部で画像の一番上、ページ最下部で画像の一番下が揃います。
+  /* ページ背景。ページごとにpcとmobileを別々に指定可能。
+     opacity: 0〜1 ページ内で省略すると下の共通値を使います。
+     url: 画像の出典URL。設定すると画面の右下隅に小さく表示される。
+     slide: true にすると、画像を画面の横幅ぴったりに合わせ、スクロールに合わせてスライドさせる。
+            ページ最上部で画像の一番上、ページ最下部で画像の一番下が揃う。
             ・画像の縦が「ページの縦」より長い → 画像のほうが速く動く(ページのスクロールが相対的に遅い)
             ・画像の縦が「ページの縦」より短い → 画像のほうが遅く動く(ページのスクロールが相対的に速い)
-            ・画像の縦が画面より短い場合は、画面内を上から下へ移動し、余白にはページの地色が見えます。
-            false なら画像を画面全体に敷き詰めて(cover)中央で固定します。 */
+            ・画像の縦が画面より短い場合は、画面内を上から下へ移動し、余白にはページの地色が見える。
+            false なら画像を画面全体に敷き詰めて(cover)中央で固定。 */
   bg:{
     slide:{pc:true, mobile:true},
     opacity:0.25,
@@ -201,9 +199,8 @@ const SITE={
     links:    {pc:"./Background/PC_Links.webp", mobile:"./Background/SP_Links.webp", opacity:0.25, url:"https://skeb.jp/@7qDappi_zizii/works/121"},
     peripheral:{pc:"./Background/PC_Peripheral.webp", mobile:"./Background/SP_Peripheral.webp", opacity:0.25, url:"https://skeb.jp/@hakoha_moku/works/22"}
   },
-  /* Peripheral: ホームのDiscoveryからだけ行けるページ(左右ナビの一周には入りません)。
-     entries: [{title:"見出し", body:["段落1","段落2"], images:[{src:"サムネ画像", full:"拡大用画像(省略可)", alt:"画像の内容を説明する文", caption:"拡大時に下へ出す文(省略可)"}]}]
-     を並べると表示されます。images はInterestsと同じ書き方で、右側に角丸の正方形で並び、クリックで拡大(はみ出す分は横スライド)。省略すれば文章だけになります。 */
+  /* Peripheral: ホームのDiscoveryからだけ行けるページ(左右ナビの一周対象外)。
+     entries: [{title:"見出し", body:["段落1","段落2"], images:[{src:"サムネ画像", full:"拡大用画像(省略可)", alt:"画像の内容を説明する文", caption:"拡大時に下へ出す文(省略可)"}]}] */
   peripheral:{
     blurb:"利用している周辺機器など。",
     entries:[
@@ -242,14 +239,14 @@ const SITE={
     ,images:[{src:"./Interests/iidx-controller.webp",full:"",caption:"現在使用しているPhoenix wan。三和+D2MV-01-1C3を使用している。"},{src:"./Interests/34ver10dan.webp",full:"",caption:"現状の地力。1P十段 手首非完全固定"}]},
 		{label:"カードゲーム / Card games",note:"人生でカードゲームに触れたことがなかった人が\n今年中にポケポケ → シャドバ → 遊戯王といった順番でハマっております\n一概にカードゲームって言っても幅広いね！",url:""
     ,images:[{src:"./Interests/Pokmon TCGP.webp",full:"",caption:""},{src:"./Interests/ShadowverseWB.webp",full:"",caption:"始めて半年の戦績。そこまで熱中してるわけではないけど、めちゃ楽しい。"}]},
-		{label:"FPS / First Person Shooting games",note:"フレンドさんとやるならなんでも大歓迎！",url:""
+		{label:"FPS",note:"フレンドさんとやるならなんでも大歓迎！",url:""
     ,images:[{src:"./Interests/Titanfall2-statistics.webp",full:"",caption:"R-97が最強ってワケ。"}]},
 		{label:"折り紙 / Origami",note:"実は７歳くらいからずっとやってるよ\n立体のお花折るのが大好きです！佐藤式がお気に入り！\nTadashi MoriさんとMasahiro Ichikawaさんは我が懐かしの道標...\n弟も折り紙好きで、ポケモンたくさん折ってるっぽい！",url:""
     ,images:[{src:"./Interests/miraiyashoten-rose.webp",full:"",caption:"未来屋書店のカバーを用いて作ったバラ。"},{src:"./Interests/miraiyashoten-rose-2.webp",full:"",caption:""},{src:"./Interests/origami-im-deutschland.webp",full:"",caption:"ドイツ留学中に折って友達に上げた折り紙。4種類折るのは初めてだったので新鮮だった。"}]},
 		{label:"外国語 / Foreign languages",note:"English >> Deutsch >>>> 한국어 >>> Türkçe >>> Latina\nいろんな言語を幅広く、特にゲルマン語派を中心に楽しんでる〜\n英語とドイツ語は不自由なく話せる程度にまで持っていきたい！",url:""
     ,images:[{src:"./Interests/SDK-Abitur.webp",full:"",caption:"語学留学修了時に頂いたNiveau B1(Allgemeinsprache)の証明書。"}]},
 		{label:"言語学 / Linguistics",note:"音韻論、形態論、類型論、方言学、語源学辺りは大好き！\nたまに人工言語界隈にも足を運んだり...？\n言語・語学好きな方とはかなりシナジーがあるかも！",url:""
-    ,images:[{src:"./Interests/SDK-Abitur.webp",full:"",caption:"語学留学修了時に頂いたNiveau B1(Allgemeinsprache)の証明書。"}]},
+    ,images:[{src:"",full:"",caption:""}]},
 		{label:"自作キーボード / Custom keyboard",note:"キー配列とキーマッピングをずっと触ってるかも\nGoForty Orthoでmato式インスパイアの配列を練り練り中\n次はトラックボール付き無線左右分割カラムスタッガードが欲しい...\nみんなもロウスタッガードQWERTY配列から脱しよう！",url:""
     ,images:[{src:"./Interests/Go-Forty.webp",full:"",caption:"26年の正月に買ったGoForty Orthoの写真。"},{src:"./Interests/Go-Forty-Bind0.webp",full:"",caption:"mato式インスパイアのオリジナル論理配列。"},{src:"./Interests/Go-Forty-Bind1.webp",full:"",caption:"右手親指シフトで子音字の有声化。"},{src:"./Interests/Go-Forty-Bind2.webp",full:"",caption:"左手親指シフトでファンクションキー、数字キー、テンキーなど。"},{src:"./Interests/Go-Forty-Bind3.webp",full:"",caption:"QWERTY配列も使える。"}]}
 	]},
