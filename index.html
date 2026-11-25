@@ -367,6 +367,19 @@ document.addEventListener("click",e=>{
   }else{
     b.disabled=true;b.classList.add("ng","shake");msg.textContent=Q.wrong||"ざんねん、もう一度！"}
 });
+/* スマホ: 左右フリックで前後のページへ(左へ払う=次、右へ払う=前)。
+   画像スライダー・拡大表示中・ピンチ拡大中・画面の両端(OSの戻る操作)・文字選択中は無効 */
+(()=>{let x0=0,y0=0,t0=0,ok=false;
+  const go=sel=>{const a=$(sel);if(a&&!a.hidden)location.hash=a.getAttribute("href")};
+  addEventListener("touchstart",e=>{const t=e.touches[0];
+    ok=e.touches.length===1&&lb.hidden&&!(window.visualViewport&&visualViewport.scale>1.01)&&t.clientX>24&&t.clientX<innerWidth-24&&!e.target.closest(".pics,iframe,input,textarea,select,[contenteditable]");
+    x0=t.clientX;y0=t.clientY;t0=Date.now()},{passive:true});
+  addEventListener("touchend",e=>{if(!ok)return;ok=false;
+    const t=e.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;
+    if(Date.now()-t0>700||Math.abs(dx)<70||Math.abs(dx)<Math.abs(dy)*1.8||String(getSelection()))return;
+    go(dx<0?"#pnext":"#pprev")},{passive:true});
+  addEventListener("touchcancel",()=>{ok=false},{passive:true});
+})();
 /* section backgrounds */
 function applyBg(root){
   root.querySelectorAll("section.blk").forEach(sec=>{
