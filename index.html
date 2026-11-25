@@ -110,6 +110,8 @@ h1.name{font-size:var(--text-display);font-weight:500;line-height:1.1;margin:0;l
 .irow{display:flex;gap:var(--space-6);align-items:flex-start;padding:var(--space-4) 0;border-bottom:var(--border-width) solid var(--color-line);font-size:var(--text-sm)}
 .irow b{font-weight:500}
 .itxt{flex:1 1 auto;min-width:0}
+.itxt.prose{max-width:none} /* 文章の列は広げ、画像列を右端へ(Interestsと同じ配置)。読みやすさは段落の幅で保つ */
+.itxt.prose p{max-width:var(--reading-width)}
 .pics{flex:0 0 auto;display:flex;gap:var(--space-2);max-width:calc(3.5*4.5rem + 3*var(--space-2) + 4px);padding:4px 2px .5rem;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--color-line) transparent}
 .pic{flex:0 0 4.5rem;width:4.5rem;height:4.5rem;display:block;border-radius:.875rem;overflow:hidden;border:var(--border-width) solid var(--color-line);background:var(--color-surface);scroll-snap-align:start;text-decoration:none;transition:transform 200ms var(--ease-out),border-color var(--duration-fast)}
 button.pic{padding:0;font:inherit;cursor:zoom-in}
