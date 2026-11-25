@@ -148,7 +148,7 @@ const SITE={
   name:"nur_ieren",
   phonetic:"[ˌnuːɐ̯ˈiːʁən]",
   initial:"n",
-  avatarImage:"./Home/nur.jpg",
+  avatarImage:"./Home/nur.webp",
   tagline:"自己紹介やツールを置いてるよ",
   updated:"2026.11.25",
   about:{
@@ -199,17 +199,18 @@ const SITE={
     interests:{pc:"./Background/PC_Interests.webp", mobile:"./Background/SP_Interests.webp", opacity:0.25, url:"https://skeb.jp/@AraiRacu/works/7"},
     works:    {pc:"./Background/PC_Works.webp", mobile:"./Background/SP_Works.webp", opacity:0.25, url:"https://skeb.jp/@pu_nkn/works/62"},
     links:    {pc:"./Background/PC_Links.webp", mobile:"./Background/SP_Links.webp", opacity:0.25, url:"https://skeb.jp/@7qDappi_zizii/works/121"},
-    peripheral:{pc:"./Background/PC_Peripheral.webp", mobile:"./Background/SP_Peripheral.webp", opacity:0.25, url:"https://skeb.jp/requests/3955930"}
+    peripheral:{pc:"./Background/PC_Peripheral.webp", mobile:"./Background/SP_Peripheral.webp", opacity:0.25, url:"https://skeb.jp/@hakoha_moku/works/22"}
   },
   /* Peripheral: ホームのDiscoveryからだけ行けるページ(左右ナビの一周には入りません)。
-     entries: [{title:"見出し", body:["段落1","段落2"]}] を並べると表示されます。 */
+     entries: [{title:"見出し", body:["段落1","段落2"], images:[{src:"サムネ画像", full:"拡大用画像(省略可)", alt:"画像の内容を説明する文", caption:"拡大時に下へ出す文(省略可)"}]}]
+     を並べると表示されます。images はInterestsと同じ書き方で、右側に角丸の正方形で並び、クリックで拡大(はみ出す分は横スライド)。省略すれば文章だけになります。 */
   peripheral:{
     blurb:"利用している周辺機器など。",
     entries:[
       {title:"Mouse", body:["G402","買い替えるなら無線のG502 LIGHTSPEED。"]},
       {title:"Keyboard", body:["GLORIOUS GMMK 2 (96%) DE QWERTZ","ドイツの友達とおそろいで買った。"]},
       {title:"Sub Keyboard", body:["GoForty Ortho","論理配列や自作キーボード界隈に興味を持ったきっかけの一つ。"]},
-      {title:"Mic", body:["Yeti Nano","安定した音質を提供できている気がする。"]},
+      {title:"Mic", body:["Yeti Nano","安定した音質をお届け。"]},
       {title:"Head Mount Display", body:["Pico 4","Quest 2から移行。安定して通電しないので買い替えを検討している。"]},
       {title:"Full Body Tracking Device", body:["Pico Motion Tracker","動作にはある程度満足している。\n他のトラッカーも気になっている。"]}
     ]
@@ -234,14 +235,14 @@ const SITE={
   /* interestsの各項目の images:[{src:"サムネ画像",full:"拡大用画像(省略可)",alt:"画像の内容を説明する文",caption:"拡大時に下へ出す文(省略可。省略するとaltを表示)"}] に正方形画像を並べる。クリックで拡大表示。はみ出した分は横スライド。 */
   interests:[
     {category:"Favorites",items:[
-		{label:"VRChat",note:"基本自分のフレオンかグルオンが生息地\nVRC名鑑に（当社比）まともな自己紹介あるよ\nFFならぜひフレンドになりたい心持ち〜〜\n陰ながら\（勝手ながら\）フレンドの絵文字制作係を担っています",url:"",images:[{src:"./Interest/vrchat-hmd-trackers.jpg",full:"",caption:"Quest2だった頃と、先に買っておいたPico Motion Tracker。"},{src:"./Interest/vrchat-hmd-trackers-2.jpg",full:"",caption:"Pico 4が届いたときの写真。"},{src:"./Interest/vrchat-sign-origin.png",full:"",caption:"この名前を作ったときに考えた書置き用のサイン。ぬぁぬぅぬる全てに対応している。"}]},
-		{label:"音ゲー / Rhythm games",note:"物理ボタンが好き！\n特にBeatmania iidx！\n1P十段 手首非完全固定 2P初段",url:"",images:[{src:"./Interest/iidx-controller.jpg",full:"",caption:"現在使用しているPhoenix wan。三和+D2MV-01-1C3を使用している。"}]},
-		{label:"カードゲーム / Card games",note:"人生でカードゲームに触れたことがなかった人が\n今年中にポケポケ → シャドバ → 遊戯王といった順番でハマっております\n一概にカードゲームって言っても幅広いね！",url:"",images:[{src:"./Interest/Pokmon TCGP.png",full:"",caption:""},{src:"./Interest/ShadowverseWB.png",full:"",caption:"始めて半年の戦績。そこまで熱中してるわけではないけど、めちゃ楽しい。"}]},
-		{label:"FPS / First Person Shooting games",note:"フレンドさんとやるならなんでも大歓迎！",url:"",images:[{src:"./Interest/Titanfall2-statistics.png",full:"",caption:"R-97が最強ってワケ。"}]},
-		{label:"折り紙 / Origami",note:"実は７歳くらいからずっとやってるよ\n立体のお花折るのが大好きです！佐藤式がお気に入り！\nTadashi MoriさんとMasahiro Ichikawaさんは我が懐かしき道標...\n弟も折り紙好きで、ポケモンたくさん折ってるっぽい！",url:"",images:[{src:"./Interest/miraiyashoten-rose.JPG",full:"",caption:"未来屋書店のカバーを用いて作ったバラ。"},{src:"./Interest/miraiyashoten-rose-2.JPG",full:"",caption:""},{src:"./Interest/origami-im-deutschland.jpg",full:"",caption:"ドイツ留学中に折って友達に上げた折り紙。4種類折るのは初めてだったので新鮮だった。"}]},
-		{label:"外国語 / Foreign languages",note:"English >> Deutsch >>>> 한국어 >>>Türkçe>>> Latina\nいろんな言語を幅広く、特にゲルマン語派を中心に楽しんでる〜\n英語とドイツ語は不自由なく話せる程度にまで持っていきたい！",url:"",images:[{src:"./Interest/SDK-Abitur.jpg",full:"",caption:"語学留学修了時に頂いたNiveau B1(Allgemeinsprache)の証明書。"}]},
+		{label:"VRChat",note:"基本自分のフレオンかグルオンが生息地\nVRC名鑑に（当社比）まともな自己紹介あるよ\nFFならぜひフレンドになりたい心持ち〜〜\n陰ながら\（勝手ながら\）フレンドの絵文字制作係を担っています",url:"",images:[{src:"./Interest/vrchat-hmd-trackers.webp",full:"",caption:"Quest2だった頃と、先に買っておいたPico Motion Tracker。"},{src:"./Interest/vrchat-hmd-trackers-2.webp",full:"",caption:"Pico 4が届いたときの写真。"},{src:"./Interest/vrchat-sign-origin.webp",full:"",caption:"この名前を作ったときに考えた書置き用のサイン。ぬぁぬぅぬる全てに対応している。"}]},
+		{label:"音ゲー / Rhythm games",note:"物理ボタンが好き！\n特にBeatmania iidx！\n1P十段 手首非完全固定 2P初段",url:"",images:[{src:"./Interest/iidx-controller.webp",full:"",caption:"現在使用しているPhoenix wan。三和+D2MV-01-1C3を使用している。"}]},
+		{label:"カードゲーム / Card games",note:"人生でカードゲームに触れたことがなかった人が\n今年中にポケポケ → シャドバ → 遊戯王といった順番でハマっております\n一概にカードゲームって言っても幅広いね！",url:"",images:[{src:"./Interest/Pokmon TCGP.webp",full:"",caption:""},{src:"./Interest/ShadowverseWB.webp",full:"",caption:"始めて半年の戦績。そこまで熱中してるわけではないけど、めちゃ楽しい。"}]},
+		{label:"FPS / First Person Shooting games",note:"フレンドさんとやるならなんでも大歓迎！",url:"",images:[{src:"./Interest/Titanfall2-statistics.webp",full:"",caption:"R-97が最強ってワケ。"}]},
+		{label:"折り紙 / Origami",note:"実は７歳くらいからずっとやってるよ\n立体のお花折るのが大好きです！佐藤式がお気に入り！\nTadashi MoriさんとMasahiro Ichikawaさんは我が懐かしき道標...\n弟も折り紙好きで、ポケモンたくさん折ってるっぽい！",url:"",images:[{src:"./Interest/miraiyashoten-rose.webp",full:"",caption:"未来屋書店のカバーを用いて作ったバラ。"},{src:"./Interest/miraiyashoten-rose-2.webp",full:"",caption:""},{src:"./Interest/origami-im-deutschland.webp",full:"",caption:"ドイツ留学中に折って友達に上げた折り紙。4種類折るのは初めてだったので新鮮だった。"}]},
+		{label:"外国語 / Foreign languages",note:"English >> Deutsch >>>> 한국어 >>>Türkçe>>> Latina\nいろんな言語を幅広く、特にゲルマン語派を中心に楽しんでる〜\n英語とドイツ語は不自由なく話せる程度にまで持っていきたい！",url:"",images:[{src:"./Interest/SDK-Abitur.webp",full:"",caption:"語学留学修了時に頂いたNiveau B1(Allgemeinsprache)の証明書。"}]},
 		{label:"言語学 / Linguistics",note:"音韻論、形態論、類型論、方言学、語源学辺りは大好き！\nたまに人工言語界隈にも足を運んだり...？\n言語・語学好きな方とはかなりシナジーがあるかも！",url:""},
-		{label:"自作キーボード / Custom keyboard",note:"キー配列とキーマッピングをずっと触ってるかも\nGoForty Orthoでmato式インスパイアの配列を練り練り中\nみんなもロウスタッガードQWERTY配列から脱しよう！",url:"",images:[{src:"./Interest/Go-Forty.jpg",full:"",caption:"26年の正月に買ったGoForty Orthoの写真。"},{src:"./Interest/Go-Forty-Bind0.png",full:"",caption:"mato式インスパイアのオリジナル論理配列。"},{src:"./Interest/Go-Forty-Bind1.png",full:"",caption:"右手親指シフトで子音字の有声化。"},{src:"./Interest/Go-Forty-Bind2.png",full:"",caption:"左手親指シフトでファンクションキー、数字キー、テンキーなど。"},{src:"./Interest/Go-Forty-Bind3.png",full:"",caption:"QWERTY配列も使える。"}]}
+		{label:"自作キーボード / Custom keyboard",note:"キー配列とキーマッピングをずっと触ってるかも\nGoForty Orthoでmato式インスパイアの配列を練り練り中\nみんなもロウスタッガードQWERTY配列から脱しよう！",url:"",images:[{src:"./Interest/Go-Forty.webp",full:"",caption:"26年の正月に買ったGoForty Orthoの写真。"},{src:"./Interest/Go-Forty-Bind0.webp",full:"",caption:"mato式インスパイアのオリジナル論理配列。"},{src:"./Interest/Go-Forty-Bind1.webp",full:"",caption:"右手親指シフトで子音字の有声化。"},{src:"./Interest/Go-Forty-Bind2.webp",full:"",caption:"左手親指シフトでファンクションキー、数字キー、テンキーなど。"},{src:"./Interest/Go-Forty-Bind3.webp",full:"",caption:"QWERTY配列も使える。"}]}
 	]},
     {category:"Bucket List",items:[
 		{label:"音楽理論 / Music Theory",note:"いつか自分で音楽作ってみたい〜\nついでに普段聞いてる音楽について詳しく分析できるようになれちゃったりして？",url:""},
@@ -251,14 +252,14 @@ const SITE={
 	]}
   ],
   links:[
-    {label:"GitHub",handle:"@nur-ieren",url:"https://github.com/nur-ieren",logo:"./Links/github-logo.png"},
-    {label:"VRChat",handle:"@nur-",url:"https://vrchat.com/home/user/usr_cd7c4239-44e5-41ab-a28e-11a9a11357b0",logo:"./Links/VRChat Logo Black.png"},
-	  {label:"vrc-meikan",handle:"@nur_ieren",url:"https://vrc-meikan.com/profile/baa76819-ca5d-4151-84d0-ed0fb4140380",logo:"./Links/vrc-meikan.png"},
-    {label:"X(Twitter)",handle:"@nur_ieren",url:"https://x.com/nur_ieren",logo:"./Links/X-logo.png"},
-    {label:"My Skeb requests",handle:"@nur_ieren",url:"https://skeb.jp/@nur_ieren",logo:"./Links/skeb-logo.png"},
-	  {label:"YouTube",handle:"@nur_ieren",url:"https://youtube.com/@nur_ieren",logo:"./Links/Youtube-logo.png"},
-	  {label:"Spotify",handle:"@yy_yy",url:"https://open.spotify.com/user/31iul5uh5th7mbxnqrsp3tu4fjbe",logo:"./Links/spotify-logo.png"},
-	  {label:"SoundCloud",handle:"@nur_ieren",url:"https://soundcloud.com/nur_ieren",logo:"./Links/soundcloud-logo.png"}
+    {label:"GitHub",handle:"@nur-ieren",url:"https://github.com/nur-ieren",logo:"./Links/github-logo.webp"},
+    {label:"VRChat",handle:"@nur-",url:"https://vrchat.com/home/user/usr_cd7c4239-44e5-41ab-a28e-11a9a11357b0",logo:"./Links/VRChat Logo Black.webp"},
+	  {label:"vrc-meikan",handle:"@nur_ieren",url:"https://vrc-meikan.com/profile/baa76819-ca5d-4151-84d0-ed0fb4140380",logo:"./Links/vrc-meikan.webp"},
+    {label:"X(Twitter)",handle:"@nur_ieren",url:"https://x.com/nur_ieren",logo:"./Links/X-logo.webp"},
+    {label:"My Skeb requests",handle:"@nur_ieren",url:"https://skeb.jp/@nur_ieren",logo:"./Links/skeb-logo.webp"},
+	  {label:"YouTube",handle:"@nur_ieren",url:"https://youtube.com/@nur_ieren",logo:"./Links/Youtube-logo.webp"},
+	  {label:"Spotify",handle:"@yy_yy",url:"https://open.spotify.com/user/31iul5uh5th7mbxnqrsp3tu4fjbe",logo:"./Links/spotify-logo.webp"},
+	  {label:"SoundCloud",handle:"@nur_ieren",url:"https://soundcloud.com/nur_ieren",logo:"./Links/soundcloud-logo.webp"}
   ]
 };
 /* ページの並び順 = 左上/右上ボタンで一周する順番(最後の次は最初に戻る) */
@@ -295,7 +296,7 @@ const quizCard=()=>{const Q=SITE.quiz||{};if(!(Q.choices||[]).length)return"";
   return `<div class="card quiz" id="quiz"><h3>${esc(Q.title||"Quiz")}</h3><p>${esc(Q.question)}</p><div class="qopts">${Q.choices.map(c=>`<button type="button" class="qbtn" data-q="${esc(c)}">${esc(c)}</button>`).join("")}</div><div class="qmsg" id="qmsg" aria-live="polite"></div></div>`};
 const R={
 peripheral:()=>{const P=SITE.peripheral||{},E=P.entries||[];
- return `<div class="page">${head("Peripheral")}${E.length?E.map(e=>`<section class="blk"><h2 class="sec">${esc(e.title)}</h2><div class="prose">${(e.body||[]).map(p=>`<p>${esc(p)}</p>`).join("")}</div></section>`).join(""):`<div class="prose"><p class="sub">まだ何も置いていません。</p></div>`}</div>`},
+ return `<div class="page">${head("Peripheral")}${E.length?E.map(e=>`<section class="blk"><h2 class="sec">${esc(e.title)}</h2><div class="irow"><div class="itxt prose">${[].concat(e.body||[]).map(p=>`<p>${esc(p)}</p>`).join("")}</div>${pics(e.images)}</div></section>`).join(""):`<div class="prose"><p class="sub">まだ何も置いていません。</p></div>`}</div>`},
 home:()=>{const S=SITE,f=S.works.filter(w=>w.featured);
  return `<div class="home stagger"><div class="avatar" style="--i:0">${S.avatarImage?`<img src="${esc(S.avatarImage)}" alt="">`:esc(S.initial)}</div>
  <h1 class="name" style="--i:1">${esc(S.name)}</h1><div class="phon sub" style="--i:2">${esc(S.phonetic)}</div><p class="intro" style="--i:3">${esc(S.tagline)}</p></div>
