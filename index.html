@@ -143,13 +143,13 @@ section.blk.hasbg{position:relative;isolation:isolate}
 </head>
 <body>
 <script>
-/* ====== SITE DATA: edit here. Everything marked 仮 is placeholder. ====== */
+/* ====== SITE DATA: edit here. ====== */
 const SITE={
   name:"nur_ieren",
   phonetic:"[ˌnuːɐ̯ˈiːʁən]",
   initial:"n",
   avatarImage:"./Home/nur.webp",
-  tagline:"自己紹介やツールを置いてるよ",
+  tagline:"僕のいろいろが置かれてるよ",
   updated:"2026.11.25",
   about:{
     body:["バーチャルな超絶ゆったりまったり一般人","目元の名前アクセと髪にかかった北斗七星がトレードマーク？"],
@@ -224,7 +224,7 @@ const SITE={
     choices:["日本語","English","Deutsch","한국어","Türkçe","Latina"],
     answer:"Deutsch",
     right:"正解！",
-    wrong:"ざんねん、もう一度！",
+    wrong:"ちがうよ〜",
     explain:"より詳しい由来は秘密だよっ"
   },
   /* My Favorite Musics: SpotifyのURL(プレイリスト/アルバム/曲)を貼るだけ。height省略時は352(トラック一覧つき)。曲単体なら152。 */
@@ -365,7 +365,7 @@ document.addEventListener("click",e=>{
     msg.textContent=(Q.right||"正解！")+(Q.explain?" "+Q.explain:"");
     const r=b.getBoundingClientRect();confetti(r.left+r.width/2,r.top+r.height/2);
   }else{
-    b.disabled=true;b.classList.add("ng","shake");msg.textContent=Q.wrong||"ざんねん、もう一度！"}
+    b.disabled=true;b.classList.add("ng","shake");msg.textContent=Q.wrong||"ちがうよ～";}
 });
 /* スマホ: 左右フリックで前後のページへ(左へ払う=次、右へ払う=前)。
    画像スライダー・拡大表示中・ピンチ拡大中・画面の両端(OSの戻る操作)・文字選択中は無効 */
