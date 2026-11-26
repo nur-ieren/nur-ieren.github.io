@@ -46,13 +46,13 @@ const SITE={
             false なら画像を画面全体に敷き詰めて(cover)中央で固定。 */
   bg:{
     slide:{pc:true, mobile:true},
-    opacity:0.25,
-    home:     {pc:"./Background/PC_Home.webp", mobile:"./Background/SP_Home.webp", opacity:0.25, url:"https://skeb.jp/@muro_sya/works/183"},
-    about:    {pc:"./Background/PC_About.webp", mobile:"./Background/SP_About.webp", opacity:0.25, url:"https://skeb.jp/@nkmf_1122/works/38"},
-    interests:{pc:"./Background/PC_Interests.webp", mobile:"./Background/SP_Interests.webp", opacity:0.25, url:"https://skeb.jp/@AraiRacu/works/7"},
-    works:    {pc:"./Background/PC_Works.webp", mobile:"./Background/SP_Works.webp", opacity:0.25, url:"https://skeb.jp/@pu_nkn/works/62"},
-    links:    {pc:"./Background/PC_Links.webp", mobile:"./Background/SP_Links.webp", opacity:0.25, url:"https://skeb.jp/@7qDappi_zizii/works/121"},
-    peripheral:{pc:"./Background/PC_Peripheral.webp", mobile:"./Background/SP_Peripheral.webp", opacity:0.25, url:"https://skeb.jp/@hakoha_moku/works/22"}
+    opacity:0.4,
+    home:     {pc:"./Background/PC_Home.webp", mobile:"./Background/SP_Home.webp", opacity:0.4, url:"https://skeb.jp/@muro_sya/works/183"},
+    about:    {pc:"./Background/PC_About.webp", mobile:"./Background/SP_About.webp", opacity:0.4, url:"https://skeb.jp/@nkmf_1122/works/38"},
+    interests:{pc:"./Background/PC_Interests.webp", mobile:"./Background/SP_Interests.webp", opacity:0.4, url:"https://skeb.jp/@AraiRacu/works/7"},
+    works:    {pc:"./Background/PC_Works.webp", mobile:"./Background/SP_Works.webp", opacity:0.4, url:"https://skeb.jp/@pu_nkn/works/62"},
+    links:    {pc:"./Background/PC_Links.webp", mobile:"./Background/SP_Links.webp", opacity:0.4, url:"https://skeb.jp/@7qDappi_zizii/works/121"},
+    peripheral:{pc:"./Background/PC_Peripheral.webp", mobile:"./Background/SP_Peripheral.webp", opacity:0.4, url:"https://skeb.jp/@hakoha_moku/works/22"}
   },
   /* Peripheral: ホームのDiscoveryからだけ行けるページ(左右ナビの一周対象外)。
      entries: [{title:"見出し", body:["段落1","段落2"], images:[{src:"サムネ画像", full:"拡大用画像(省略可)", alt:"画像の内容を説明する文", caption:"拡大時に下へ出す文(省略可)"}]}] */
