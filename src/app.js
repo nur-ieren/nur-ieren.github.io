@@ -4,6 +4,7 @@ const SITE={
   phonetic:"[ˌnuːɐ̯ˈiːʁən]",
   initial:"",
   avatarImage:"./Home/nur.webp",
+  avatarSay:["ぬぁ～","ぬぅ～","ぬる～"], /* アイコンにマウスを乗せると、この中からランダムに吹き出しが出る */
   tagline:"僕のいろいろが置かれてるよ",
   updated:"2026.11.26",
   about:{
@@ -210,7 +211,7 @@ const peripheralEntry = e =>
 const VIEWS = {
   home: () => {
     const S = SITE, featured = S.works.filter(w => w.featured);
-    return `<div class="home stagger"><div class="avatar" style="--i:0">${S.avatarImage ? `<img src="${esc(S.avatarImage)}" alt="">` : esc(S.initial)}</div>
+    return `<div class="home stagger"><div class="avatar-wrap" style="--i:0"><div class="avatar">${S.avatarImage ? `<img src="${esc(S.avatarImage)}" alt="">` : esc(S.initial)}</div><div class="bubble" aria-hidden="true"></div></div>
  <h1 class="name" style="--i:1">${esc(S.name)}</h1><div class="phon sub" style="--i:2">${esc(S.phonetic)}</div><p class="intro" style="--i:3">${esc(S.tagline)}</p></div>
  <section class="blk"><h2 class="sec">Selected Works<a class="sub" href="#/works">all works</a></h2><div class="grid">${featured.map(workCard).join("")}</div></section>
  <section class="blk"><h2 class="sec">Discovery</h2><div class="grid">
@@ -528,6 +529,28 @@ function bindRandom() {
   };
 }
 
+/* Home: アイコンの吹き出し(マウスを乗せるたびにランダム。同じ言葉が続けて出ないようにする) */
+function bindAvatar() {
+  const wrap = $(".avatar-wrap");
+  if (!wrap) return;
+  const bubble = wrap.querySelector(".bubble"), words = SITE.avatarSay || [];
+  if (!words.length) return;
+  let last = -1, timer = 0;
+  const hide = () => { clearTimeout(timer); bubble.classList.remove("show"); };
+  const show = autoHide => {
+    let i;
+    do { i = Math.floor(Math.random() * words.length); } while (words.length > 1 && i === last);
+    last = i;
+    bubble.textContent = words[i];
+    clearTimeout(timer);
+    bubble.classList.add("show");
+    if (autoHide) timer = setTimeout(hide, 1600);
+  };
+  wrap.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") show(false); });
+  wrap.addEventListener("pointerleave", hide);
+  wrap.addEventListener("click", e => { if (e.pointerType && e.pointerType !== "mouse") show(true); }); /* スマホ・ペンはタップで */
+}
+
 /* Works: タグ絞り込み */
 function bindFilters() {
   const bar = $("#flt");
@@ -562,6 +585,7 @@ function route(enter = false) {
   $("#main").focus({preventScroll: true});
   scrollToGoal(view);
   bindRandom();
+  bindAvatar();
   bindFilters();
 }
 
