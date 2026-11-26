@@ -59,7 +59,6 @@ a:hover{color:var(--color-accent);text-decoration-color:var(--color-accent)}
 .pager i{font-style:normal;display:inline-block;transition:transform var(--duration-normal) var(--ease-out)}
 .pg:first-child .pager:hover i{transform:translateX(-4px)}
 .pg:last-child .pager:hover i{transform:translateX(4px)}
-.pg:first-child .pager.up:hover i{transform:translateY(-4px)} /* ↑Home は上へ動く */
 /* theme toggle: 1つの丸ボタン。ライトは白地に太陽、ダークは黒地に月。押すとアイコンが回転して入れ替わる */
 .theme{pointer-events:auto;position:relative;display:block;width:2rem;height:2rem;padding:0;border:var(--border-width) solid var(--color-line);border-radius:50%;overflow:hidden;cursor:pointer;background:#FFFDF8;transition:background var(--duration-normal),border-color var(--duration-fast),transform var(--duration-fast)}
 .theme:hover{border-color:var(--color-accent)}
