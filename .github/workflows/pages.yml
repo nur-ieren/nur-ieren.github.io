@@ -1,41 +1,61 @@
-# GitHub Pages へ自動で公開するワークフロー。
-# main ブランチに push すると、リポジトリの中身を公開用に集めて、そのまま公開します。
+
+# GitHub Pages へ自動で公開するワークフロー
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:   # Actions タブの「Run workflow」から手動でも実行できます
+  workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  # 公開用ファイルの収集とアップロード
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: read
+
     steps:
       - uses: actions/checkout@v7
 
       - name: Collect site files
-        # 公開しないもの(.git / .github / README など)を除いて _site にコピーします
         run: |
           mkdir _site
-          rsync -a --exclude='.git' --exclude='.github' --exclude='README.md' --exclude='_site' ./ _site/
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='README.md' \
+            --exclude='_site' \
+            ./ _site/
 
       - uses: actions/configure-pages@v6
 
-      - uses: actions/upload-pages-artifact@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
-      - id: deployment
+  # GitHub Pages へのデプロイ
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v5
