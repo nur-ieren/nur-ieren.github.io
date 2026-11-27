@@ -77,7 +77,7 @@ const SITE={
   quiz:{
     title:"Quiz",
     question:"「nur_ieren」の由来になった言語は？",
-    choices:["日本語","English","Deutsch","한국어","Türkçe","Latina"],
+    choices:["日本語","English","Deutsch","한국어","Türkçe","Latin"],
     answer:"Deutsch",
     right:"正解！",
     wrong:"ちがうよ〜",
@@ -102,7 +102,7 @@ const SITE={
     ,images:[{src:"./Interests/Titanfall2-statistics.webp",full:"",caption:"R-97が最強ってワケ。"}]},
 		{label:"折り紙 / Origami",note:"実は７歳くらいからずっとやってるよ\n立体のお花折るのが大好きです！佐藤式がお気に入り！\nTadashi MoriさんとMasahiro Ichikawaさんは我が懐かしの道標...\n弟も折り紙好きで、ポケモンたくさん折ってるっぽい！",url:""
     ,images:[{src:"./Interests/miraiyashoten-rose.webp",full:"",caption:"未来屋書店のカバーを用いて作ったバラ。"},{src:"./Interests/miraiyashoten-rose-2.webp",full:"",caption:""},{src:"./Interests/origami-im-deutschland.webp",full:"",caption:"ドイツ留学中に折って友達に上げた折り紙。4種類折るのは初めてだったので新鮮だった。"}]},
-		{label:"外国語 / Foreign languages",note:"English >> Deutsch >>>> 한국어 >>> Türkçe >>> Latīnus\nいろんな言語を幅広く、特にゲルマン語派を中心に楽しんでる〜\n英語とドイツ語は不自由なく話せる程度にまで持っていきたい！",url:""
+		{label:"外国語 / Foreign languages",note:"English >> Deutsch >>>> 한국어 >>> Türkçe >>> Latin\nいろんな言語を幅広く、特にゲルマン語派を中心に楽しんでる〜\n英語とドイツ語は不自由なく話せる程度にまで持っていきたい！",url:""
     ,images:[{src:"./Interests/SDK-Abitur.webp",full:"",caption:"語学留学修了時に頂いたNiveau B1(Allgemeinsprache)の証明書。"}]},
 		{label:"言語学 / Linguistics",note:"音韻論、形態論、類型論、方言学、語源学辺りは大好き！\nたまに人工言語界隈にも足を運んだり...？\n言語・語学好きな方とはかなりシナジーがあるかも！",url:""
     ,images:[{src:"",full:"",caption:""}]},
