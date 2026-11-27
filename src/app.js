@@ -19,10 +19,10 @@ const SITE={
     {id:"tool",title:"ArmatureSyncControl",description:"アーマチュア内のTransform値を揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ArmatureSyncControl",status:"release",featured:false},
 	  {id:"tool",title:"ExpressionMenuRelinker",description:"新しいアバターごとのメニューを作るのに便利です。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ExpresionMenuRelinker",status:"release",featured:false},
 	  {id:"tool",title:"MatsPrefsUnifier",description:"マテリアルの影設定などを揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/vor-ges/MatsPrefsUnifier",status:"release",featured:true},
-	  {id:"tool",title:"MenuToggler",description:"不要なUnityメニューを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/MenuToggler",status:"release",featured:true},
+	  {id:"tool",title:"MenuToggler",description:"不要なUnityメニューを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/MenuToggler",status:"release",featured:false},
 	  {id:"tool",title:"Openlilavatarutils",description:"lilavatarutilsをアバタールート右クリックから簡単に開きます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/Openlilavatarutils",status:"release",featured:false},
 	  {id:"tool",title:"ProjectFolderHider",description:"不要なProjectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
-	  {id:"software",title:"VRChatWindowControl",description:"SteamVR起動中のVRChatウィンドウサイズを制御します。",date:"2026",tags:["software","vrchat","optimization","c#"],image:"",url:"https://github.com/vor-ges/VRChatWindowControl",status:"work in progress",featured:true},
+	  {id:"software",title:"VRChatWindowControl",description:"SteamVR起動中のVRChatウィンドウサイズを制御します。",date:"2026",tags:["software","vrchat","optimization","c#"],image:"",url:"https://github.com/vor-ges/VRChatWindowControl",status:"work in progress",featured:false},
     {id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
   ],
   /* カードの不透明度。1=不透明、0=完全に透明。一括で変わる。 */
