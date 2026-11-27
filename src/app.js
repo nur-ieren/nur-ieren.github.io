@@ -13,7 +13,7 @@ const SITE={
     timeline:[{date:"2026.10.19",text:"このサイトを作り始める"}]
   },
   works:[
-    {id:"tool",title:".conv",description:"画像・音声ファイルの拡張子変換を簡単に行います。",date:"2026",tags:["tool","extension","streamline","python"],image:"",url:"https://github.com/vor-ges/.conv",status:"work in progress",featured:true},
+    {id:"tool",title:".conv",description:"画像・音声・動画ファイルの拡張子変換を簡単に行います。",date:"2026",tags:["tool","extension","streamline","python"],image:"",url:"https://github.com/vor-ges/.conv",status:"release",featured:true},
     {id:"bot",title:"vrc-friend-bot",description:"フレンドの平均的なログイン時間を知るのに便利です。",date:"2026",tags:["discord","bot","vrchat","python"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot",status:"release",featured:true},
     {id:"bot",title:"vrc-friend-bot-rs",description:"vrc-friend-botのRust版です。",date:"2026",tags:["discord","bot","vrchat","rust"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot-rs",status:"work in progress",featured:false},
     {id:"Site",title:"nur-ieren.github.io",description:"当サイトのソースコードです。",date:"2026",tags:["site","html","css","javascript"],image:"",url:"https://github.com/nur-ieren/nur-ieren.github.io",status:"release",featured:false},
