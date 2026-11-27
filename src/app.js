@@ -13,7 +13,7 @@ const SITE={
     timeline:[{date:"2026.10.19",text:"このサイトを作り始める"}]
   },
   works:[
-    {id:"tool",title:".conv",description:"拡張子変換を簡単に行います。",date:"2026",tags:["tool","extension","streamline","python"],image:"",url:"https://github.com/vor-ges/.conv",status:"work in progress",featured:false},
+    {id:"tool",title:".conv",description:"拡張子変換を簡単に行います。",date:"2026",tags:["tool","extension","streamline","python"],image:"",url:"https://github.com/vor-ges/.conv",status:"work in progress",featured:true},
     {id:"bot",title:"vrc-friend-bot",description:"フレンドのログイン時間を知るのに便利です。",date:"2026",tags:["discord","bot","vrchat","python"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot",status:"release",featured:true},
     {id:"bot",title:"vrc-friend-bot-rs",description:"vrc-friend-botのRust版です。",date:"2026",tags:["discord","bot","vrchat","rust"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot-rs",status:"work in progress",featured:false},
     {id:"tool",title:"ArmatureSyncControl",description:"アーマチュア内のTransform値を揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ArmatureSyncControl",status:"release",featured:false},
@@ -22,7 +22,7 @@ const SITE={
 	  {id:"tool",title:"MenuToggler",description:"不要なUnityメニューを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/MenuToggler",status:"release",featured:true},
 	  {id:"tool",title:"Openlilavatarutils",description:"lilavatarutilsをアバタールート右クリックから簡単に開きます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/Openlilavatarutils",status:"release",featured:false},
 	  {id:"tool",title:"ProjectFolderHider",description:"不要なProjectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
-	  {id:"software",title:"VRChatWindowControl",description:"SteamVR起動中のVRChatウィンドウサイズを制御します。",date:"2026",tags:["software","vrchat","optimization","c#"],image:"",url:"https://github.com/vor-ges/VRChatWindowControl",status:"work in progress",featured:false},
+	  {id:"software",title:"VRChatWindowControl",description:"SteamVR起動中のVRChatウィンドウサイズを制御します。",date:"2026",tags:["software","vrchat","optimization","c#"],image:"",url:"https://github.com/vor-ges/VRChatWindowControl",status:"work in progress",featured:true},
     {id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
   ],
   /* カードの不透明度。1=不透明、0=完全に透明。一括で変わる。 */
