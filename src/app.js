@@ -17,14 +17,14 @@ const SITE={
     {id:"bot",title:"vrc-friend-bot",description:"フレンドの平均的なログイン時間を知るのに便利です。",date:"2026",tags:["discord","bot","vrchat","python"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot",status:"release",featured:true},
     {id:"bot",title:"vrc-friend-bot-rs",description:"vrc-friend-botのRust版です。",date:"2026",tags:["discord","bot","vrchat","rust"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot-rs",status:"work in progress",featured:false},
     {id:"Site",title:"nur-ieren.github.io",description:"当サイトのソースコードです。",date:"2026",tags:["site","html","css","javascript"],image:"",url:"https://github.com/nur-ieren/nur-ieren.github.io",status:"release",featured:false},
-    {id:"tool",title:"ArmatureSyncControl",description:"アーマチュア内のTransform値を揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ArmatureSyncControl",status:"release",featured:false},
-	  {id:"tool",title:"ExpressionMenuRelinker",description:"新しいアバターごとのメニューを作るのに便利です。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ExpresionMenuRelinker",status:"release",featured:false},
-	  {id:"tool",title:"MatsPrefsUnifier",description:"マテリアルの影設定などを揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/vor-ges/MatsPrefsUnifier",status:"release",featured:true},
+    {id:"tool",title:"ArmatureSyncControl",description:"同素体アバター間のアーマチュア内のTransform値などの設定を揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ArmatureSyncControl",status:"release",featured:false},
+	  {id:"tool",title:"ExpressionMenuRelinker",description:"アバター毎にフォルダ分けされたExpressionMenuを作るのに便利です。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ExpresionMenuRelinker",status:"release",featured:false},
+	  {id:"tool",title:"MatsPrefsUnifier",description:"liltoon・関連マテリアルの影設定などを揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/vor-ges/MatsPrefsUnifier",status:"release",featured:true},
 	  {id:"tool",title:"MenuToggler",description:"不要なUnityメニューを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/MenuToggler",status:"release",featured:false},
 	  {id:"tool",title:"Openlilavatarutils",description:"lilavatarutilsをアバタールート右クリックから簡単に開きます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/Openlilavatarutils",status:"release",featured:false},
 	  {id:"tool",title:"ProjectFolderHider",description:"不要なProjectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
 	  {id:"software",title:"VRChatWindowControl",description:"SteamVR起動中のVRChatウィンドウサイズを制御します。",date:"2026",tags:["software","vrchat","optimization","c#"],image:"",url:"https://github.com/vor-ges/VRChatWindowControl",status:"work in progress",featured:false},
-    {id:"tool",title:"WDUnifier",description:"アバター内のControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
+    {id:"tool",title:"WDUnifier",description:"アバター内の全ControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
   ],
   /* カードの不透明度。1=不透明、0=完全に透明。一括で変わる。 */
   cardOpacity:0.5,
