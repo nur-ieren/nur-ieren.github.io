@@ -16,6 +16,7 @@ const SITE={
     {id:"tool",title:".conv",description:"拡張子変換を簡単に行います。",date:"2026",tags:["tool","extension","streamline","python"],image:"",url:"https://github.com/vor-ges/.conv",status:"work in progress",featured:true},
     {id:"bot",title:"vrc-friend-bot",description:"フレンドのログイン時間を知るのに便利です。",date:"2026",tags:["discord","bot","vrchat","python"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot",status:"release",featured:true},
     {id:"bot",title:"vrc-friend-bot-rs",description:"vrc-friend-botのRust版です。",date:"2026",tags:["discord","bot","vrchat","rust"],image:"",url:"https://github.com/vor-ges/vrc-friend-bot-rs",status:"work in progress",featured:false},
+    {id:"Site",title:"nur-ieren.github.io",description:"当サイトのソースコードです。",date:"2026",tags:["site","html","css","javascript"],image:"",url:"https://github.com/nur-ieren/nur-ieren.github.io",status:"release",featured:false},
     {id:"tool",title:"ArmatureSyncControl",description:"アーマチュア内のTransform値を揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ArmatureSyncControl",status:"release",featured:false},
 	  {id:"tool",title:"ExpressionMenuRelinker",description:"新しいアバターごとのメニューを作るのに便利です。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ExpresionMenuRelinker",status:"release",featured:false},
 	  {id:"tool",title:"MatsPrefsUnifier",description:"マテリアルの影設定などを揃えます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/vor-ges/MatsPrefsUnifier",status:"release",featured:true},
