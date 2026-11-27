@@ -18,6 +18,7 @@
   --border-width:1px;--radius-sm:.25rem;--radius-md:.5rem;
   --ease-out:cubic-bezier(.16,1,.3,1);--duration-fast:160ms;--duration-normal:320ms;--duration-slow:560ms;
   --paper-rgb:244,240,232;--surface-rgb:234,228,217;--accent-rgb:166,79,56; /* 半透明にしたい箇所用(rgbaで使う) */
+  --bubble-bg:#ece6da;--bubble-text:#171614;
   color-scheme:light dark;
 }
 /* dark mode: 最初はOS/ブラウザの設定に合わせ、右上中央のボタンで選ぶと html[data-theme] が優先される。
@@ -26,10 +27,10 @@
 :root[data-theme=dark]{color-scheme:dark}
 @media(prefers-color-scheme:dark){
   :root:not([data-theme=light]){--color-paper:#171614;--color-surface:#211f1c;--color-ink:#ece6da;--color-muted:#a8a296;--color-line:#35322c;--color-accent:#e0865f;
-        --paper-rgb:23,22,20;--surface-rgb:33,31,28;--accent-rgb:224,134,95}
+        --paper-rgb:23,22,20;--surface-rgb:33,31,28;--accent-rgb:224,134,95;--bubble-bg:#292823;--bubble-text:#F4F0E8}
 }
 :root[data-theme=dark]{--color-paper:#171614;--color-surface:#211f1c;--color-ink:#ece6da;--color-muted:#a8a296;--color-line:#35322c;--color-accent:#e0865f;
-        --paper-rgb:23,22,20;--surface-rgb:33,31,28;--accent-rgb:224,134,95}
+        --paper-rgb:23,22,20;--surface-rgb:33,31,28;--accent-rgb:224,134,95;--bubble-bg:#292823;--bubble-text:#F4F0E8}
 
 /* ---------- 2. base ---------- */
 *{box-sizing:border-box}
@@ -93,9 +94,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(-
 .avatar:hover{transform:rotate(-6deg) scale(1.04)}
 .avatar img{width:100%;height:100%;object-fit:cover}
 /* 吹き出し(アイコンにマウスを乗せると表示。スマホはタップで一瞬表示) */
-.bubble{position:absolute;left:68%;bottom:84%;z-index:3;padding:.3rem .85rem;border-radius:1rem 1rem 1rem .2rem;background:var(--color-ink);color:var(--color-paper);font-size:var(--text-sm);line-height:1.5;white-space:nowrap;pointer-events:none;opacity:0;transform:translateY(6px) scale(.6);transform-origin:0 100%;transition:opacity var(--duration-fast),transform var(--duration-normal) var(--ease-out)}
-.bubble::after{content:"";position:absolute;left:.35rem;top:100%;border:.45rem solid transparent;border-top-color:var(--color-ink);border-left-width:.1rem;border-right-width:.6rem} /* しっぽ(アイコン側へ) */
-.bubble.show{opacity:1;transform:none}
+.bubble{position:absolute;left:68%;bottom:84%;z-index:3;padding:.3rem .85rem;border-radius:1rem 1rem 1rem .2rem;background:var(--bubble-bg);color:var(--bubble-text);font-size:var(--text-sm);line-height:1.5;white-space:nowrap;pointer-events:none;visibility:hidden;opacity:0;transform:translateY(6px) scale(.6);transform-origin:0 100%;transition:opacity var(--duration-fast),transform var(--duration-normal) var(--ease-out),visibility 0s var(--duration-normal)}
+.bubble::after{content:"";position:absolute;left:.35rem;top:100%;border:.45rem solid transparent;border-top-color:var(--bubble-bg);border-left-width:.1rem;border-right-width:.6rem} /* しっぽ(アイコン側へ) */
+.bubble.show{visibility:visible;opacity:1;transform:none;transition:opacity var(--duration-fast),transform var(--duration-normal) var(--ease-out),visibility 0s}
 h1.name{font-size:var(--text-display);font-weight:500;line-height:1.1;margin:0;letter-spacing:-.02em;color:#e5b489}
 .phon{margin:var(--space-3) 0 var(--space-8)}
 .intro{max-width:var(--reading-width);margin:0 auto;color:var(--color-ink)}

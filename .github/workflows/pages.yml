@@ -1,46 +1,61 @@
-# GitHub Pages へ自動で公開するワークフロー。
-# main に push すると、型チェック → ビルド(TypeScript を JavaScript にまとめる)→ 公開、の順に実行します。
-# 型チェックでエラーが出たら公開は行われず、今の公開内容がそのまま残ります。
+
+# GitHub Pages へ自動で公開するワークフロー
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:   # Actions タブの「Run workflow」から手動でも実行できます
+  workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  # 公開用ファイルの収集とアップロード
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: read
+
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-
-      - run: npm ci
-
-      - name: Type-check and build
-        run: npm run build   # → _site/ に公開用ファイルができる
+      - name: Collect site files
+        run: |
+          mkdir _site
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='README.md' \
+            --exclude='_site' \
+            ./ _site/
 
       - uses: actions/configure-pages@v6
 
-      - uses: actions/upload-pages-artifact@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
-      - id: deployment
+  # GitHub Pages へのデプロイ
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v5
