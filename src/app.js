@@ -23,7 +23,7 @@ const SITE={
 	  {id:"tool",title:"MenuToggler",description:"不要なUnityメニューを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/MenuToggler",status:"release",featured:true},
 	  {id:"tool",title:"Openlilavatarutils",description:"lilavatarutilsをアバタールート右クリックから簡単に開きます。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/Openlilavatarutils",status:"release",featured:false},
 	  {id:"tool",title:"ProjectFolderHider",description:"不要なProjectタブ内のフォルダを非表示にします。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/ProjectFolderHider",status:"release",featured:false},
-    {id:"software",title:"Transfontor",description:"選択したテキストのフォントを変換します。",date:"2026",tags:["software","font",".NET","c#"],image:"",url:"https://github.com/vor-ges/VRChatWindowControl",status:"work in progress",featured:true},
+    {id:"software",title:"Transfontor",description:"選択したテキストのフォントを変換します。",date:"2026",tags:["software","font",".NET","c#"],image:"",url:"https://github.com/vor-ges/Transfontor",status:"work in progress",featured:true},
     {id:"software",title:"VRChatWindowControl",description:"SteamVR起動中のVRChatウィンドウサイズを制御します。",date:"2026",tags:["software","vrchat",".NET","c#"],image:"",url:"https://github.com/vor-ges/VRChatWindowControl",status:"release",featured:true},
     {id:"tool",title:"WDUnifier",description:"アバター内の全ControllerのWriteDefaultsを一括統一します。",date:"2026",tags:["tool","unity","streamline","c#"],image:"",url:"https://github.com/nur-ieren/WDUnifier",status:"release",featured:false}
   ],
